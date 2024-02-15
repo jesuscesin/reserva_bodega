@@ -1,0 +1,116 @@
+
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/devoluciones_info.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+     
+    <form id="frm_usuario" name="frm_usuario">
+		<div class="card-header">
+        <h2 class="card-title form-check-label">Proceso de Recepcion de Devolciones</h2>
+		</div><br>
+        <!-- Fila 1 -->
+<!--      <div>-->
+<!--			Indica la cantidad que puedes seleccinar: <input type="text" id="cantidad" value="0">-->
+<!--		</div>-->
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+       		<div class="card card-Olive">
+                <div class="card-header">
+                  <h3 class="card-title">Formulario de Busqueda</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                   <label class="col-sm-1 form-check-label" for="notcmb_tienda">Guia:</label>      
+					<div class="col-sm-2">
+						<div class="input-group">
+							<input type="text" class="form-control input-sm" id="guia" name="guia" />
+						</div>
+					</div>
+					<label class="col-sm-1 form-check-label" for="notcmb_tienda">Canal:</label>      
+					<div class="col-sm-2">
+							<div class="input-group">
+							<select class="form-control input-sm" id="canal" name="canal">
+                                    <option value="">----- SELECCIONE -----</option>
+                                    <option value="FALABELLA">FALABELLA</option>
+									<option value="PARIS">PARIS</option>
+									<option value="RIPLEY">RIPLEY</option>
+									<option value="HITES">HITES</option>
+									<option value="LA POLAR">LA POLAR</option>
+									<option value="MULTITIENDAS TRICOT">TRICOT</option>
+									<option value="ECOMMERCE">ECOMMERCE MONARCH</option>
+									<option value="MONARCH">MONARCH</option>
+									<!--<option value="03">03 - SALDOS</option>-->
+									
+							</select>
+						</div>
+					</div>
+                    </div><br>
+                    <div class="row">
+                    <label class="col-sm-1 form-check-label" for="notcmb_tienda">Estado:</label>   
+					<div class="col-sm-2">
+						<div class="input-group">
+							<select class="form-control input-sm" id="status" name="status">
+								<option value="">.............</option>
+								<option value="todos" selected>TODOS </option>
+								<option value="10">EN PROCESO</option>
+								<option value="20">CONFIRMADOS</option>
+								<!-- <option value="40">VALIDADOS</option> -->
+								<!-- <option value="30">ANULADOS</option> -->
+							</select>
+						</div>
+					</div>
+					<button type="button" id="buscar" class="btn btn-primary">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+
+          <div id="mensajes">
+                
+        </div>
+
+
+              <!-- TABLA PARA AGREGAR ASIGNACIONES -->
+            <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+                <div class="card card-Lightblue">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado de Recepciones  </h3><br> <!--<label id="ola_seleccionada"></label>-->
+                    </div>
+                  <!-- /.card-header -->
+                    <div class="card-body">
+                        <span class="pull-right">
+                            <!--<button type="button" id='guardar_cambios' class="btn btn-outline btn-info btn-guardar-cambios"><i class="fas fa-save"></i> Digitar Bultos</button>                            -->
+                            <!--<button type="button" id='ficha_masiva' class="btn btn-outline btn-warning"><i class="fas fa-file"></i> Ficha Masiva</button>                            -->
+                        </span>
+                        <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_info_devoluciones" >		
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>ID</th>
+                                    <th>Guia</th>
+                                    <th>Origen</th>
+                                    <th>Articulos</th>
+                                    <th>Cantidad</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Ver CID</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    
+
+    </form>
+</body>
+</html>

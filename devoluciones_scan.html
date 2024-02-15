@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/devoluciones_scan.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
+    <script>
+		
+
+
+    </script>
+</head>
+
+<body>
+     
+    <form id="frm_usuario" name="frm_usuario">
+        <div class="card-header">
+            <h2 class="card-title"><strong>Recepcion de Devoluciones</strong></h2>
+		</div><br>          
+		<div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+       		<div class="card card-Olive">
+                <div class="card-header">
+                  <h3 class="card-title">Formulario de Recepcion</h3>
+                </div><br>
+				
+					<div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+					<div class="row">
+                    <label class="col-sm-1 form-check-label" for="notcmb_tienda">#:</label>                
+                        <div class="col-sm-2">
+                            <div class="input-group">     
+									<input type="text" class="form-control input-sm" id="filas" name="filas"/>
+									<input type="text" class="form-control input-sm" id="asg-secuencia" name="asg-secuencia" readonly />
+									<!-- <input type="text" class="form-control input-sm" id="sesion" name="sesion" readonly /> -->
+								</div>
+							</div>
+					</div><br>
+					<div class="row">
+						<label class="col-sm-1 form-check-label" for="notcmb_tienda">Guia:</label>      
+							<div class="col-sm-4">
+								<div class="input-group">
+									<input type="text" class="form-control input-sm" id="guia" name="guia" />
+							</div>
+						</div>
+					</div><br>
+					<div class="row">
+						<label class="col-sm-1 form-check-label" for="notcmb_tienda">Cantidad:</label>      
+							<div class="col-sm-1">
+								<div class="input-group">
+									<input type="text" class="form-control input-sm" id="cantidad" name="cantidad" value="1" />
+							</div>
+						</div>
+					</div><br>
+					<div class="row">
+						<label class="col-sm-1 form-check-label" for="notcmb_tienda">Barra:</label>      
+							<div class="col-sm-4">
+								<div class="input-group">
+									<input type="text" class="form-control input-sm" id="numero" name="numero" onblur="minuscula();" onkeypress="handle(event);" />
+							</div>
+						</div>
+					</div><br>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="div_button">                            
+                            <button type="button" class="btn btn-default" id="btn_limpiar_asig">Limpiar</button>
+                            <button type="button" class="btn btn-success" id="btn_confirmar">Confirmar <span class="glyphicon glyphicon-ok"></button>
+                            <!--<button type="button" class="btn btn-info" id="btn_update_asig"  trid="" fila="">Modificar Asignacion</button>-->
+                            <!--<button type="button" class="btn btn-danger" id="btn_quitar_asg">Quitar Asignacion</button>-->
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+					</div>
+				</div>
+        </div><br>
+   
+          
+     
+			  <div id="mensajes">
+                
+        </div>
+              <!-- TABLA PARA AGREGAR ASIGNACIONES -->
+		
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+                <div class="card card-Lightblue">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado de Productos Escaneados : <input type="text" class="form-control input-sm" id="suma_total"/></h3><br>
+                    </div>
+                  <!-- /.card-header -->
+				   <div class="card-body table-responsive p-0">
+                    <div class="card-body">
+
+                        <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_scan" >		
+							<thead>
+								<tr>
+									<th>Guia</th>
+									<th>Barra Cliente</th>
+									<th>Codigo MCH</th>
+									<th>Barra MCH</th>
+									<th>Rut</th>
+									<th>Origen</th>
+									<th>Cantidad Articulos</th>
+									<th>Fila</th>
+							   
+									<!--<th>Editar</th>-->
+									<th>Borrar</th>  
+								</tr>
+							</thead>
+							<tbody>
+							<!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+							</tbody>
+						</table> 
+					</div>
+				</div>
+                </div>
+            </div>   
+	 </form>
+</body>
+</html>

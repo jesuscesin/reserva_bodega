@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/articulos_homologate.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
+	 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+
+	 <style>
+		.custom-file-button input[type=file] {
+		margin-left: -2px !important;
+		}
+
+		.custom-file-button input[type=file]::-webkit-file-upload-button {
+		display: none;
+		}
+
+		.custom-file-button input[type=file]::file-selector-button {
+		display: none;
+		}
+
+		.custom-file-button:hover label {
+		background-color: #dde0e3;
+		cursor: pointer;
+		}
+	 </style>
+</head>
+<script type="text/javascript">
+		
+		
+$(document).ready(function(){  // autocompletado del articulo
+	$("#articulo").autocomplete({
+	minLength: 4,
+	source:'ajax_codigo.php',
+	select:function(event, ui){
+	$('#hddescip_').html('<input type="text" id="hddescip_" name="hddescip[]" class="form-control input-sm" style="font-size:40px " size="50" value="'+ ui.item.descrip +'"/>');
+	
+	
+	
+
+	}
+	});
+});
+
+
+    </script>
+<body>
+
+	<form id="formConversion">
+		<div class="card-header">
+			 <h2 class="card-title form-check-label">Administrar Homologación</h2>
+		  </div><br>
+		  
+		   <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+				<div class="card card-Olive">
+					<div class="card-header">
+						<div class="row">
+							<div class="col-md-3 pt-4">
+								<h3 class="card-title"><strong>Subir Planilla Homologar</strong></h3>
+							</div>
+							<div class="col-md-6 pt-4 form-group">
+								<div class="input-group custom-file-button">
+									<label class="input-group-text" for="inputFileCargaMasiva">&#128228; Carga Masiva</label>
+									<input type="file" class="form-control" id="inputFileCargaMasiva" name="inputFileCargaMasiva">
+								</div>
+							</div>
+							<div class="col-md-3 pt-4">
+								<button type="button" class="btn btn-default" id="btn_limpiar">Limpiar</button>
+								<button type="button" class="btn btn-primary" id="btn_subir">Subir Planilla</button>	
+								<a class="btn btn-secondary" href="homologate_base.php" role="button">&#128229; Base</a>								
+							</div>
+						</div>									
+					</div>
+
+
+				</div>
+			</div>
+			<div id="mensajes"></div>
+			
+			<div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+				<div class="card card-Lightblue">
+					<div class="card-header">
+						
+						<div class="row">
+							<div class="col-md-4">
+								<h2 class="card-title"><strong>Lista Planillas Homologación</strong></h2>		
+								
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+					<table id="tbl_b2b_homologa" class='table table-bordered table-striped table-sm dataTable dtr-inline'>			
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Nombre Archivo</th>                    
+								<th>Fecha Subida</th>                    
+								<th>Hora Subida</th>                    
+								<th>Responsable</th>                    
+								<th>Filas</th>								
+								<th>Filas DB</th>
+								<th>CHECK</th>	
+								<th>Descargar</th>
+								<th>Borrar</th>
+								<!-- <th>Convertir</th>								
+								<th>Caducar</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							
+						<!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+						</tbody>
+					</table>    
+				</div>
+			</div>
+		</div>
+		 
+	</form>
+
+
+<script>
+	$(function () {
+		bsCustomFileInput.init();
+	});
+</script>
+
+
+
+</body>
+</html>

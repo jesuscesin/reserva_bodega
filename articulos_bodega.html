@@ -1,0 +1,132 @@
+
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/articulos_bodega.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+     
+    <form id="frm_usuario" name="frm_usuario">
+		<div class="card-header">
+        <h2 class="card-title form-check-label">Consulta Artículos por Bodega</h2>
+		</div><br>
+        <!-- Fila 1 -->
+<!--      <div>-->
+<!--			Indica la cantidad que puedes seleccinar: <input type="text" id="cantidad" value="0">-->
+<!--		</div>-->
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+       		<div class="card card-Olive">
+                <div class="card-header">
+                  <h3 class="card-title">Formulario de Busqueda</h3>
+                </div>
+                <div class="card-body">
+                    <!--<div class="row">
+                   <label class="col-sm-1 form-check-label" for="notcmb_tienda">Guia:</label>      
+					<div class="col-sm-2">
+						<div class="input-group">
+							<input type="text" class="form-control input-sm" id="guia" name="guia" />
+						</div>
+					</div>
+					<label class="col-sm-1 form-check-label" for="notcmb_tienda">Canal:</label>      
+					<div class="col-sm-2">
+							<div class="input-group">
+							<select class="form-control input-sm" id="canal" name="canal">
+                                    <option value="">----- SELECCIONE -----</option>
+                                    <option value="FALABELLA">FALABELLA</option>
+									<option value="PARIS">PARIS</option>
+									<option value="RIPLEY">RIPLEY</option>
+									<option value="HITES">HITES</option>
+									<option value="LA POLAR">LA POLAR</option>
+									<option value="MULTITIENDAS TRICOT">TRICOT</option>
+									<option value="ECOMMERCE">ECOMMERCE MONARCH</option>
+									
+									
+							</select>
+						</div>
+					</div>
+                    </div><br>-->
+                    <div class="row">
+                    <label class="col-sm-1 form-check-label" for="bodega">Bodega:</label>   
+					<div class="col-sm-2">
+						<div class="input-group">
+							<select class="form-control input-sm" id="bodega" name="bodega">
+                                <option value="">TODOS</option>
+                                <option value="01">01 - CALCETINES MONARCH</option>
+                                    <option value="02">02 - TRAMA MONARCH</option>
+                                    <option value="03">03 - SALDOS</option>
+                                    <option value="04">04 - DEVOLUCIONES</option>
+                                    <option value="05">05 - ROPA BEBÉ</option>
+                                    <option value="11">11 - CALCETINES PERUGGI</option>
+                                    <option value="12">12 - TRAMA LASST</option>
+                                    <option value="14">14 - DICOTEX</option>
+                                    <option value="15">15 - ROPA INTERIOR TAIS</option>
+                                    <option value="23">23 - REPROCESOS AGRICOLA</option>
+                                    <option value="31">31 - IMPORTACIONES MARATHON</option>
+                                    <option value="42">42 - TRAMA GLAMOUR</option>
+                                    <option value="43">43 - TALLER EXTERNO DEVOLUCIONES</option>
+                                    <option value="44">44 - MINSA-AGRICOLA</option>
+                                    <option value="50">50 - ECOMMERCE</option>
+                            </select>
+						</div>
+					</div>
+					<button type="button" id="btn_buscar" name="btn_buscar" class="btn btn-primary">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+
+          <div id="mensajes">
+                
+        </div>
+
+
+              <!-- TABLA PARA AGREGAR ASIGNACIONES -->
+            <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+                <div class="card card-Lightblue">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-sm-2 pt-2">
+                                <h3 class="card-title">Listado de Artículos  </h3>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" id="exportExcel" name="exportExcel" class="btn btn-success"><i class="fa fa-download pr-2" aria-hidden="true"></i>Exportar Planilla</button>
+                            </div>
+                            
+                            
+                        </div>
+                        
+                    </div>
+                  <!-- /.card-header -->
+                    <div class="card-body">
+                        <span class="pull-right">
+                            <!--<button type="button" id='guardar_cambios' class="btn btn-outline btn-info btn-guardar-cambios"><i class="fas fa-save"></i> Digitar Bultos</button>                            -->
+                            <!--<button type="button" id='ficha_masiva' class="btn btn-outline btn-warning"><i class="fas fa-file"></i> Ficha Masiva</button>                            -->
+                        </span>
+                        <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_articulos_bodega" name="tbl_articulos_bodega" >		
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>CODIGO</th>
+                                    <th>BARRA</th>
+                                    <th>DESCRIPCION</th>
+                                    <th>GRUPO</th>
+                                    <!--<th>ACCION</th>-->
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    
+
+    </form>
+</body>
+</html>

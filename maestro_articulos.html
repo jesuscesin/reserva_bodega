@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/maestro_articulos.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js"></script>
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+
+    <style>
+        .table-condensed{
+            font-size: 12px;
+        }
+	 </style>
+
+    <script type="text/javascript">
+		
+        $(document).ready(function(){  // autocompletado del articulo
+            $("#txt_estilo").autocomplete({
+                minLength: 6,
+                source:'ajax_articulo.php',
+                select:function(event, ui){
+
+                    var estiloSeleccionado = ui.item.value.substring(0, 6);
+                    $("#txt_estilo").val(estiloSeleccionado);
+
+                    $('#hddescip_').html('<input type="text" id="hddescip_" name="hddescip[]" class="form-control input-sm" style="font-size:40px " size="100" value="'+ ui.item.descrip +'"/>');
+                                    
+                    setTimeout(() => { $("#txt_estilo").focus(); }, 200);
+
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+     <div class="card-header">
+            <h2 class="card-title"><strong>Maestro de Artículos</strong></h2>
+		</div><br>          
+		
+    <form id="frm_genera" name="frm_genera">
+     
+ 
+    <div id="asignaciones"><!---->
+		<div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+            <div class="card card-Primary">
+                <div class="card-header">
+                    <h3 class="card-title"><strong>ENCABEZADO</strong></h3>
+                </div>
+            <div class="card-body">
+                <div class="row">
+              
+                    <label class="col-sm-1 form-check-label font-weight-bold" for="cmb_origen">Origen:</label>                
+                    <div class="col-sm-3">
+                        <div class="input-group">           
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_origen" name="cmb_origen">
+                                <option value="">.............</option>
+                                <option value="NA">NACIONAL</option>		
+                                <option value="IM">IMPORTADO</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <label class="col-sm-1 form-check-label font-weight-bold">Estilo:</label>
+                    <div class="col-sm-3">
+						<div class="input-group">
+						    <input type="text" class="form-control form-control-sm input-sm border border-info input-sm" id="txt_estilo" name="txt_estilo" maxlength="6"/>
+						</div>
+                    </div>
+
+                    <!--
+                    
+                    -->
+
+                    <label class="col-sm-1 form-check-label font-weight-bold" for="cmb_tipo">Tipo:</label>                
+                    <div class="col-sm-3">
+                        <div class="input-group">           
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_tipo" name="cmb_tipo">
+                                    <option value="">.............</option>
+                                    <option value="PT">PT - Producto Terminado</option>
+                                    <option value="SE">SE - Servicios</option>
+                            </select>
+                        </div>
+                    </div>
+				</div>                
+                <div class="row" style="display: none;" id="div_genero" name="div_genero">
+                    <br>
+                    <div class="col-sm-6 input-group">           
+                        <label class="col-sm-2 form-check-label font-weight-bold" for="cmb_genero">Género:</label>                
+                        <select class="col-sm-6 form-control-sm input-sm requeridoAsig" id="cmb_genero" name="cmb_genero">
+                                <option value="">.............</option>
+                                <option value="NO">Normal</option>
+                                <option value="ES">Especial</option>
+                        </select>
+                    </div>
+                </div>
+                <br><br>
+
+                <!--Salto de linea-->
+				<hr class='hr_titulo'>
+				<div class="row">
+                    <!--DESCRIPCION-->
+                    <label class="col-sm-1 form-check-label text-primary">Descripción:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-sm border border-info input-sm requerido" id="txt_descripcion" name="txt_descripcion" maxlength="29" />
+                        </div>
+                    </div>  
+                    
+                    <!--TALLA-->
+                    <label class="col-sm-1 form-check-label text-primary">Talla:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_talla" name="cmb_talla">
+                                <option value="">.............</option>		
+                                <option value="1">"04"; "06"; "08"; "10"</option>
+                                <option value="2">"S"; "M"; "L"; "XL"; "XS"</option>
+                                <option value="3">"10"; "12"; "14"; "16"</option>
+                                <option value="4">"3/4"; "5/6"; "7/8"; "9/10"; "9/12"</option>
+                                <option value="5">"U"</option>
+                                <option value="6">"0/2"; "0/4"; "0/6"; "0/8"</option>
+                                <option value="7">"ADU"; "J"; "JR"</option>
+                                <option value="8">"35"; "36"; "37"; "38"</option>
+                                <option value="9">"0/1"; "1/2"; "1/4"</option>
+                                <option value="10">"10M"; "11M"; "10/12"</option>
+                                <option value="11">"6"; "7"; "8"; "9"; "10"; "J"</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--COLOR-->
+                    <label class="col-sm-1 form-check-label text-primary">Color:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-sm border border-info input-sm" id="txt_color" name="txt_color" maxlength="3"/>
+                        </div>
+                    </div>
+                    
+				 </div><br>
+				 <div class="row">
+                    <label class="col-sm-1 form-check-label text-primary">Familia:</label>
+                    <div class="col-sm-3">
+						<div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_familia" name="cmb_familia">
+                                <option value="">.............</option>								
+                            </select>
+						</div>
+					</div>
+                    <label class="col-sm-1 form-check-label text-primary">Clase:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_clase" name="cmb_clase">
+                                <option value="">.............</option>
+                                <option value="1010">1010 - CALCETINES</option>
+                                <option value="1030">1030 - CALZA Y BUCANERA GRUESA</option>
+                                <option value="1070">1070 - ACCESORIOS CALCETINES</option>
+                                <option value="2010">2010 - PANTYHOSE</option>
+                                <option value="2020">2020 - BALLERINA TRAMA</option>
+                                <option value="2030">2030 - MEDIAS Y MINIMEDIAS</option>
+                                <option value="2040">2040 - CALZA Y BUCANERA</option>
+                                <option value="2050">2050 - CHEMISETTE</option>
+                                <option value="2055">2055 - POLERA</option>
+                                <option value="2060">2060 - ROPA INTERIOR</option>
+                                <option value="2070">2070 - ACCESORIOS TRAMA</option>
+                                <option value="3010">3010 - BALLERINA ALGODON</option>
+                                <option value="3020">3020 - BALLERINAS LANA</option>
+                                <option value="5100">5100 - BODY BEBE</option>
+                                <option value="5200">5200 - CONJUNTO BEBE</option>
+                                <option value="5300">5300 - PIJAMAS</option>
+                                <option value="6010">6010 - SLIP</option>
+                                <option value="6020">6020 - BOXER</option>
+                                <option value="6030">6030 - CALZONCILLO</option>
+                                <option value="6040">6040 - CAMISETA</option>
+                                <option value="6050">6050 - COLALESS</option>
+                                <option value="6060">6060 - CUADROS</option>
+                                <option value="6070">6070 - HOTS PANTS</option>
+                                <option value="6080">6080 - PETOS Y SOSTENES</option>
+                                <option value="7010">7010 - PIJAMAS LARGOS</option>
+                                <option value="7020">7020 - PIJAMAS LARGOS</option>
+                                <option value="7030">7030 - CAMISOLAS</option>
+                                <option value="9010">9010 - OVILLOS</option>							
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="col-sm-1 form-check-label text-primary" for="cmb_bodega">Bodega:</label>                
+                    <div class="col-sm-3">
+                        <div class="input-group">           
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_bodega" name="cmb_bodega">
+                                    <option value="">.............</option>
+                                    <option value="01">01 - CALCETINES MONARCH</option>
+                                    <option value="02">02 - TRAMA MONARCH</option>
+                                    <option value="03">03 - SALDOS</option>
+                                    <option value="04">04 - DEVOLUCIONES</option>
+                                    <option value="05">05 - ROPA BEBÉ</option>
+                                    <option value="11">11 - CALCETINES PERUGGI</option>
+                                    <option value="12">12 - TRAMA LASST</option>
+                                    <option value="14">14 - DICOTEX</option>
+                                    <option value="15">15 - ROPA INTERIOR TAIS</option>
+                                    <option value="23">23 - REPROCESOS AGRICOLA</option>
+                                    <option value="31">31 - IMPORTACIONES MARATHON</option>
+                                    <option value="42">42 - TRAMA GLAMOUR</option>
+                                    <option value="43">43 - TALLER EXTERNO DEVOLUCIONES</option>
+                                    <option value="44">44 - MINSA-AGRICOLA</option>
+                                    <option value="50">50 - ECOMMERCE</option>
+                            </select>
+                        </div>
+                    </div>
+                   
+                    
+				 </div><br>
+				 
+                 <div class="row">
+                    <!--PROVEEDOR-->
+                    <label class="col-sm-1 form-check-label text-primary">Proveedor:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_proveedor" name="cmb_proveedor">
+                                <option value="">.............</option>								
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--MARCA-->
+                    <label class="col-sm-1 form-check-label text-primary">Marca:</label>
+                    <div class="col-sm-3">
+						<div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_marca" name="cmb_marca">
+                                <option value="">.............</option>								
+                            </select>
+						</div>
+					</div>
+
+                    <!--LINEA-->
+                    <label class="col-sm-1 form-check-label text-primary">Linea:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_linea" name="cmb_linea">
+                                <option value="">.............</option>								
+                            </select>
+                        </div>
+                    </div>
+                    
+				 </div><br>
+                 <div class="row">
+                    <!--COMPOSICION-->
+                    <label class="col-sm-1 form-check-label text-primary">Confección:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_composicion" name="cmb_composicion">
+                                <option value="">.............</option>
+                                <option value="05">05 - DRALON</option>
+                                <option value="06">06 - COBRE</option>
+                                <option value="10">10 - BAMBOO</option>
+                                <option value="20">20 - ELASTICADO</option>
+                                <option value="21">21 - NYLON</option>
+                                <option value="22">22 - POLIAMIDA</option>
+                                <option value="23">23 - LINO</option>
+                                <option value="31">31 - JERSEY</option>
+                                <option value="32">32 - PUÑO</option>
+                                <option value="33">33 - POLAR</option>
+                                <option value="35">35 - GAMUZA</option>
+                                <option value="36">36 - COTTON LYCRA</option>
+                                <option value="38">38 - POLICOTTON LYCRA</option>
+                                <option value="42">42 - MICROFIBRA</option>
+                                <option value="43">43 - TELA PLANA</option>
+                                <option value="44">44 - COTELE</option>
+                                <option value="45">45 - MEZCLILLA</option>
+                                <option value="46">46 - ECO-CUERO</option>							
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--TEMPORADA-->
+                    <label class="col-sm-1 form-check-label text-primary">Temporada:</label>
+                    <div class="col-sm-3">
+						<div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_temporada" name="cmb_temporada">
+                                <option value="">.............</option>								
+                            </select>
+						</div>
+					</div>
+
+                    <!--MAQUINA-->
+                    <label class="col-sm-1 form-check-label text-primary">Máquina:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_maquina" name="cmb_maquina">
+                                <option value="">.............</option>		
+                                <option value="GZ">GZ</option>		
+                                <option value="Z9">Z9</option>						
+                            </select>
+                        </div>
+                    </div>
+                    
+				 </div><br>
+                 <div class="row">
+                    <!--UM-->
+                    <label class="col-sm-1 form-check-label text-primary">UM:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">           
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_um" name="cmb_um">
+                                <option value="">.............</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--2UM-->
+                    <label class="col-sm-1 form-check-label text-primary">2da UM:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">           
+                            <select class="form-control form-control-sm input-sm requeridoAsig" id="cmb_2um" name="cmb_2um">
+                                <option value="">.............</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--CONV-->
+                    <label class="col-sm-1 form-check-label text-primary">Conversión:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input type="number" class="form-control form-control-sm border border-info input-sm" id="txt_conv" name="txt_conv" maxlength="3"/>
+                        </div>
+                    </div>
+                    
+				 </div><br>
+                 <div class="row">
+                    <div class="col-sm-2">
+                        <input type="hidden" class="form-control input-sm" value=0 id="filas" name="filas"/>   
+                        <input type="hidden" class="form-control input-sm" value=0 id="barras" name="barras"/>   
+                        <input type="hidden" class="form-control input-sm" value=0 id="recno" name="recno"/>   
+                        <input type="hidden" class="form-control input-sm" value=0 id="sequ" name="sequ"/>   
+                        <input type="hidden" class="form-control input-sm" value="0" id="ctaContable" name="ctaContable"/>   
+                        <input type="hidden" class="form-control input-sm" value="0" id="ctaVenta" name="ctaVenta"/>   
+                        <input type="hidden" class="form-control input-sm" value="0" id="ctaCosto" name="ctaCosto"/>   
+                        <input type="hidden" class="form-control input-sm" value="0" id="itemGasto" name="itemGasto"/>   
+                        <input type="hidden" class="form-control input-sm" value="0" id="centroCosto" name="centroCosto"/>   
+                        <input type="hidden" class="form-control input-sm" value="0" id="claseValor" name="claseValor"/>   
+                        
+                    </div>
+                 </div>
+
+                    <div class="row">                        
+                        <div class="col-sm-3 justify-content-center mx-auto px-5">
+                            <br>
+							<button type="button" class="btn btn-default" id="btn_limpiar">Limpiar</button>
+                            <button type="button" class="btn btn-primary" id="btn_add_articulo">Agregar Articulo  <span class="glyphicon glyphicon-plus"></button>
+                    
+                        </div>						 
+				    </div><br> 
+                    <div class="row">                        
+                        <div class="col-sm-12 text-right">
+                            <button type="button" class="btn btn-success" id="btn_confirmar">Confirmar  <span class="glyphicon glyphicon-ok"></button>
+                        </div>						 
+				    </div>
+                    <div id="mensajes">
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+      <!--FIN DIV DE ASIGANCIONES-->
+
+    <div id="mensajes">
+            
+    </div>
+        <div class="card card-success" >
+            <div class="card-header">
+                <h3 class="card-title"><strong>DETALLE ARTÍCULO(S) AGREGADOS</strong></h3>
+                <div class="col-sm-12 text-right">
+                    <button type="button" class="btn btn-default text-right" id="btn_limpiarTbl">Limpiar Tabla</button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+            <table class='table table-bordered table-striped table-sm table-condensed' id="tbl_fcodigos" >		
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>SKU</th>
+                        <th>Descripción</th>
+                        <th>Bodega</th>
+                        <th>Familia</th>
+                        <th>Clase</th>
+                        <th>Tipo</th>
+                        <th>Código de Barra</th>
+                        <th>Proveedor</th>
+                        <th>Marca</th>
+                        <th>Linea</th>
+                        <th>Composición</th>
+                        <th>Temporada</th>
+                        <th>Máquina</th>
+                        <th>UM</th>
+                        <th>2da UM</th>
+                        <th>Conversión</th>
+                        <th>Remover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                </tbody>
+            </table>
+            </div>
+		</div>
+    </form>
+</body>
+</html>

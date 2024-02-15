@@ -1,0 +1,512 @@
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/oc_prueba.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+	<meta http-equiv="Cache-Control" content="no-store" /> 
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<style>
+		.lista-condi{
+			padding-left: 0%;
+			border-radius: 20px;
+			max-height: 50px;
+			position:relative;
+			float:right;		
+			z-index: 100;
+			nav-index: auto;
+		}
+		.lista-condi li{
+			background-color: #EEEEEE;
+			border-top: 1px solid #9e9e9e;
+			border-left: 1px solid #9e9e9e;
+			border-right: 1px solid #9e9e9e;
+			width: 350px;
+			cursor: pointer;
+			list-style-type:none;
+			border-bottom: 1px solid #9e9e9e;
+			border-radius: 5px;
+			font-size: 15;			
+		}
+		.lista-condi li:hover{
+			background-color: white;
+		}
+		.list-interior{
+			margin: 0;
+			padding: 0;			
+		}
+		.despl-moneda{
+			border-color: #17ABD1;
+			border-radius: 5px;
+		}
+		.input-oc-corto{
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			border-color: #17ABD1;
+			max-width: 80px;
+			height: 25px;
+			outline: none;
+		}
+		
+		.input-oc-corto-ronly{
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			border-color: #17ABD1;
+			max-width: 80px;
+			height: 25px;
+			background-color: #EEEEEE;
+			border-radius: 5px;
+			outline: none;
+		}
+		.input-oc-medio{
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			border-color: #17ABD1;
+			max-width: 160px;
+			height: 25px;
+			outline: none;
+		}
+		.input-oc-medio-ronly{
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			border-color: #17ABD1;
+			max-width: 160px;
+			height: 25px;
+			background-color: #EEEEEE;
+			border-radius: 5px;
+			outline: none;
+		}
+		.input-oc-largo{
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			border-color: #17ABD1;
+			width: 240px;
+			max-width: auto;
+			height: 25px;
+			outline: none;
+		}
+		.input-oc-largo-ronly{
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			border-color: #17ABD1;
+			width: 240px;
+			height: 25px;
+			background-color: #EEEEEE;
+			border-radius: 5px;
+			outline: none;
+		}
+		.btn-buscar{
+			border: 0px; 
+			background: transparent;
+			width: 30px;
+			height: 30px;
+			outline: none;
+		}
+
+		.input-dialog{
+			height: 40px;
+			width: 400px;
+			border-radius:40px;
+			margin-left: 20px;
+			margin-bottom: 30px;
+			text-indent: 20px;
+			border-color: #0091FF;
+			outline: #04467B;
+		}
+		.input-dialog:focus{
+			border-color: #04467B;
+		}
+		.dialog{
+			animation:backwards;
+		}
+		.btn-cerrar{
+			float: right;
+			background-color: transparent;
+			border: none;
+			height: 30px;
+			width: 30px;
+		}
+		#pup_proveedores{			
+			width: 800px; 
+			height: 700px;
+			background-size:contain;
+			background-color: rgba(0,0,0,.55); 
+			border: transparent; 
+		}
+		
+	</style>
+	
+</head>
+
+<body>
+	<div class="card-header">
+        <div class="row">
+            <div class="col-sm-6">
+              <p  class="text-muted mb-1"><a href='principal.php'>Principal</a> / Generador de Ordenes de Compra</p>
+            </div> 
+        </div>
+	</div><br>
+
+    <form id="frm_orcom" autocomplete="off">
+		
+        <!-- Fila 1 -->
+		
+		<div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+			<div class="card card-Lightblue">
+            	<div class="card-header">
+                	<h3 class="card-title">Orden de Compra</h3>
+              	</div>
+              	<div class="card-body">
+					
+					<div class="row">	
+						<label class="col-sm-2 form-check-label text-info" style="max-width: 110px;" for = "oc_fechem">Fch emisión:<abbr title="Obligatorio" aria-label="Obligatorio"> *</abbr></label>
+						<div class="col-sm-1">
+							<div class="input-group">
+								<input style="width: 110px" type="date" class="input-oc-medio" id="oc_fechem" name="oc_fechem"/>
+							</div>
+						</div>
+						
+						<label style="margin-left: 10px;" class="col-sm-1 form-check-label text-info" for = "oc_proveedor">Proveedor:<abbr title="Obligatorio" aria-label="Obligatorio"> *</abbr></label>
+						<div class="col-sm-2" style="max-width: 120px">
+							<div class="row">
+							<div class="input-group" style="max-width: 120px">
+								<input type="text" placeholder="999999999k" style="max-width: 90px" class="input-oc-corto" id="oc_proveedor" name="oc_proveedor"/>
+								<button type="button" 
+										class="btn-buscar"
+										id="btn_proveedor" 
+										name="btn_proveedor" >
+									<i class="fas fa-user-plus" style="color: #17ABD1; "></i>					
+								</button>
+							</div>
+								<div class="lista-condi">
+									<ul class="list-interior" id="listaProv"></ul>
+								</div>
+							</div>
+							
+					 	</div>
+
+						<div class="col-sm-2">
+							<div class="input-group">
+								<input type="text" class="input-oc-largo-ronly" id="oc_desPro" name="oc_desPro" readonly/>
+							</div>
+						</div>	 
+
+						<label class="col-sm-1 form-check-label text-info" style="max-width: 100px;" for = "oc_contacto">Contacto:</label>
+						<div class="col-sm-1" style="max-width: 175px;">
+							<div class="input-group">
+						   		<input style="width: 180px;" type="text" class="input-oc-medio" id="oc_contacto" name="oc_contacto"/>
+							</div>
+					 	</div>
+						
+						<label class="col-sm-1 form-check-label text-info" style="max-width: 100px;" for = "oc_pentrega">Direccion:</label>
+						<div class="col-sm-3" style="max-width: 180px;">
+							<div class="input-group">
+						   		<input type="text" class="input-oc-largo" id="oc_pentrega" name="oc_pentrega"/>
+						   		<!-- <button type="button" style="border: 0px; background: none;" id="btn_sucursal" name="btn_sucursal">
+									<i class="fas fa-search" style="color: #17ABD1; "></i>							
+						  		</button> -->
+							</div>
+					 	</div>
+						
+				 	</div><br>
+
+				  	<div class="row">
+						
+							<label class="col-sm-1 form-check-label text-info" for ="oc_conpago">Cond. Pago:<abbr title="Obligatorio" aria-label="Obligatorio"> *</abbr></label>
+							<div class="col-sm-1">
+								<div class="row">
+									<div class="input-group">
+										<input 	type="text" 
+												placeholder="1,2,etc" 
+												class="input-oc-corto"												 
+												id="oc_conpago"
+												style="max-width: 50px; font-size: 15px;"
+												name="oc_conpago"/>	
+										<!-- <button type="button" class="btn-buscar" id="btn_conPago" name="btn_conPago">
+											<i class="fas fa-search fa-border" style="color: #17ABD1; border: 0px;"></i>							
+										</button>										   								  		   -->
+									</div>
+								
+									<div class="lista-condi">
+										<ol id="listaOP" class="list-interior"></ol>
+								  	</div>
+								</div>
+							</div>	
+
+							<div class="col-sm-2">
+								<div class="input-group">
+									<input type="text" 
+										   class="input-oc-largo-ronly" 
+										   id="oc_selPago" 
+										   name="oc_selPago"
+										   readonly/>
+								</div>
+							</div>													 
+							<!-- "<li onclick="mostrar($row[DESCRIPCION])"> -->
+							<!-- "<li onclick=\"mostrar('".$row['DESCRIPCION']."')\">" -->
+						
+								<label class="col-sm-1 form-check-label text-info" style="max-width: 90px;" for = "oc_moneda">Moneda:<abbr title="Obligatorio" aria-label="Obligatorio"> *</abbr></label>
+								<div class="col-sm-1" style="max-width: 50px;">
+									<div class="input-group" style="max-width: 50px;">
+										<select type="text" class="input-oc-corto" id="oc_moneda" name="oc_moneda">
+											<option></option>
+											<option value="PESO">01</option>
+											<option value="DOLAR">02</option>
+											<option value="UF">03</option>
+										</select>
+									</div>
+								 </div>
+								
+								<div class="col-sm-1" >
+									<div class="input-group" style="max-width: 60px;">
+										<input type="text" 
+										style="height: 25px;" 
+										class="input-oc-corto-ronly" 
+										id="oc_selMoneda" 
+										name="oc_selMoneda" 
+										readonly/>
+									</div>
+								</div>
+		
+								 <label class="col-sm-1 form-check-label text-info" for="oc_solicita">Solicitante:<abbr title="Obligatorio" aria-label="Obligatorio"> *</abbr></label>
+								<div class="col-sm-3">
+									<div class="row">								
+										<div class="input-group">
+											<input type="text" class="input-oc-largo"  id="oc_solicita" name="oc_solicita"/>
+										   </div>								
+										<div class="lista-condi">
+											<ul id="listaSoli" class="list-interior"></ul>
+										</div>						
+									</div>
+								</div>	
+						
+								<div class="form-group" style="margin-top: 20px;">
+									<label for="txt_descExt">Observación para Autorizador</label>
+									<textarea class="form-control" name="txt_descAutori" id="txt_descAutori" cols="150" rows="2"></textarea>
+								</div>
+						
+
+				 	</div>
+
+					<input type="hidden" id="oc_validacion" name="oc_validacion">
+					<input type="hidden" id="oc_validacion2" name="oc_validacion2">
+
+				 	</div>
+
+				  	<!-- <button type="button" id="buscar" class="btn btn-success">Guardar Cambios</button> -->
+					<hr class='hr_titulo'>
+					<span class='card-title' style="padding-left: 20px; margin-bottom: -15px;"><strong>INGRESO DE PRODUCTO/SERVICIO</strong></span><br>
+
+					<div class="card-body">
+						<div class="row">
+							<label class="col-sm-1 form-check-label text-info" for="oc_codArticulo" >Cod. Articulo:</label>
+							<div class="col-sm-2">
+								<div class="row">
+									<div class="input-group">
+										<input type="text" class="input-oc-medio" id="oc_codArticulo" name="oc_codArticulo">
+									</div>
+									<div class="lista-condi">
+										<ul id="listaArti" class="list-interior"></ul>
+									</div>
+								</div>
+							</div>
+
+							<label class="col-sm-1 form-check-label text-info" for="oc_descArticulo" style="max-width: 100px;">Descripcion:</label>
+							<div class="col-sm-3">																			  
+								<div class="input-group">
+									<input type="text" class="input-oc-largo" id="oc_descArticulo" name="oc_descArticulo">
+								</div>
+							</div>
+
+							<label class="col-sm-1 form-check-label text-info" for="oc_docenas" style="max-width: 90px;">U. Medida:</label>
+							<div class="col-sm-1">
+								<div class="input-group">
+									<input type="text" class="input-oc-corto" id="oc_docenas" name="oc_docenas">
+								</div>
+							</div>
+
+							<label class="col-sm-1 form-check-label text-info" for="oc_unidades" style="max-width: 85px;">Cantidad:</label>
+							<div class="col-sm-1">
+								<div class="input-group">
+									<input type="number" class="input-oc-corto" id="oc_unidades" name="oc_unidades">
+								</div>
+							</div>
+
+							
+						</div>
+
+						<div class="row" style="margin-top: 15px;">
+
+							<label class="col-sm-1 form-check-label text-info" for="oc_precio" style="max-width: 200px;" >Prc. Unitario:</label>
+							<div class="col-sm-2">
+								<div class="input-group">
+									<input type="number" class="input-oc-medio" id="oc_precio" name="oc_precio" placeholder="$">
+								</div>
+							</div>
+
+							<label class="col-sm-2 form-check-label text-info" for="oc_descuento" style="max-width: 110px;">% Descuento:</label>
+							<div class="col-sm-1">
+								<div class="input-group">
+									<input type="number" class="input-oc-corto" id="oc_descuento" name="oc_descuento" disabled="">
+								</div>
+							</div>
+
+							<div class="col-sm-1">
+								<div class="input-group">
+									<input type="checkbox" class="check-input" name="oc_Checkdescuento" id="oc_Checkdescuento">
+								</div>
+							</div>		
+							
+					
+							<label style="max-width: 160px;" class="col-sm-2 form-check-label text-info">Tipo de documento:</label>
+							  <div class="col-sm-3">
+								  <div class="input-group">
+									 <select class="input-oc-largo" id="estado" name="estado">
+										  <option value="0">-- SELECCIONE OPCIÓN --</option>
+										  <option value="1">Boleta de honorarios</option>
+										  <option value="2">Factura</option>
+									  </select>
+								  </div>
+							   </div>
+						
+							
+						</div>
+						<div class="form-group" style="margin-top: 20px;">
+							<label for="txt_descExt">Descripcion extendida de articulo</label>
+							<textarea class="form-control" name="txt_descExt" id="txt_descExt" cols="100" rows="2"></textarea>
+							<div class="row" style="margin-top: 10px; margin-left: 10px; width: 160px;">
+								<button style="width: 160px;" class="btn btn-success" id="btn_AggProd" name="btn_AggProd">Agregar</button>
+							</div>
+						</div>
+
+						
+
+					</div>
+
+				</div>
+				
+			</div>
+			
+		</div><br>
+
+		
+
+
+    	<div id="mensajes"></div>
+
+
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 0px;">
+            <div class="card card-Lightblue">
+                <div class="card-header">
+                    <h3 class="card-title">Detalle de orden de compra</h3><br>
+                </div>        
+	
+                <div class="card-body" style="overflow: auto;">
+                    <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_ordcompra" >		
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Producto</th>
+                                <th>Descripcion</th>
+                                <th width = "40">Unidad</th>
+                                <th width = "40">Cantidad</th>
+                                <th width = "85">Prc.Unitario</th>
+                                <th width = "75">%Desc.Item</th>
+                                <th width = "100">$ Desc.</th>
+								<th>Valor Total</th>							
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                        </tbody>
+                    </table>
+					<div class="form-group">
+						<label for="txt_observaciones">Observaciones generales</label>
+						<textarea class="form-control" name="txt_observaciones" id="txt_observaciones" cols="100" rows="5"></textarea>
+						<button type="button" 
+								class="btn btn-success" 
+								id="btn_cargaBBDD" 
+								name="btn_cargaBBDD"
+								style="margin-top: 10px;">
+							Guardar orden
+						</button>
+
+					</div>
+                </div>
+        </div>	 
+
+    </form>
+
+	
+	<dialog id = "pup_proveedores">
+		<center>
+			<form method="dialog" id="frm_AggProveedor" name="frm_AggProveedor">
+				<div class="card-body">
+					<div class="card card-Lightblue">
+						<div class="card-header">
+							<h3 class="card-title">Agregar un nuevo Proveedor</h3>
+							<button class="btn-cerrar" type="button" id ="btn_cerrarPupPro">
+								<i class="fas fa-times" style="color: red; border-color: black; border: 2px;"></i>
+							</button><br>
+						</div>
+						
+						<div class="card-body" style="overflow: auto; margin-top: 10px;">
+							<div class="input-group">
+									<label class="col-sm-3" for="oc_newRut">RUT: </label>
+									<input class="input-dialog" type="text" name="oc_newRut" id="oc_newRut">
+							</div>	
+
+							<div class="input-group">
+								<label class="col-sm-3" for="oc_newDesc">Descripcion: </label>
+								<input class="input-dialog" type="text" name="oc_newDesc" id="oc_newDesc">
+							</div>
+
+							<div class="input-group">
+								<label class="col-sm-3" for="oc_newContac">N° de Contacto: </label>
+								<input class="input-dialog" type="tel" name="oc_newContac" id="oc_newContac">
+							</div>
+
+							<div class="input-group">
+								<label class="col-sm-3" for="oc_newMail">E-mail: </label>
+								<input class="input-dialog" type="email" name="oc_newMail" id="oc_newMail">
+							</div>	
+
+							<div class="input-group">
+								<label class="col-sm-3" for="oc_newDirec">Dirección: </label>
+								<input class="input-dialog" type="text" name="oc_newDirec" id="oc_newDirec">
+							</div>	
+
+							<div class="input-group">
+								<label class="col-sm-3" for="regiones">Región: </label>
+								<select class="input-dialog" type="text" name="regiones" id="regiones"></select>
+							</div>	
+
+							<div class="input-group">
+								<label class="col-sm-3" for="comunas">Comuna: </label>
+								<select class="input-dialog" type="text" name="comunas" id="comunas"></select>
+							</div>				
+						</div>				
+					</div>
+				</div>
+			</form>		
+		</center>
+	</dialog>
+
+
+
+</body>
+</html>
+
+
+

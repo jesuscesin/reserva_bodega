@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+   <title>Page Title</title>
+   <script src="js/solicitud_rf.js" type="text/javascript"></script>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/excellentexport@3.4.3/dist/excellentexport.min.js"></script>
+</head>
+
+<body>
+   <form>
+      <div class="card-header">
+         <h2 class="card-title form-check-label">Solicitud de Radio Frecuencia</h2>
+         
+      </div>
+      <div class="card-body">
+         <h5 class="card-title">*.- Si necesitas ayuda Consulta el <a href="manuales/Solicitudes Radio Frecuencia.docx" target="_blank">Manual de Solicitud Radio Frecuencia</a></h2>
+      </div>
+      <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+         <div class="card card-Olive">
+            <div class="card-header" id="titulo">
+               <h3 class="card-title">Opciones</h3>
+            </div>
+            <div class="card-body">
+               <div class="row" id="divbutton">
+                  <div class="col">
+                     <div class="col text-center">
+                        <label class="">Solicitar Radio Frecuencia</label>
+                     </div>
+                     <div class="col col-8 mx-auto">
+                        <button type="button" class="btn btn-primary btn-block" id="solicitar_rf">Solicitar</button>
+                     </div>
+                  </div>
+                  <div class="col">
+                     <div class="col text-center">
+                        <label class="" placeholder="Last name">Devolver Radio Frecuencia</label>
+                     </div>
+                     <div class="col col-8 mx-auto">
+                        <button type="button" class="btn btn-warning btn-block" id="devolver_rf" style="white-space: nowrap;">Devolver</button>
+                     </div>
+                  </div>
+               </div>
+               <div class="row" id="pantalla_solicitar"></div>
+               <div class="row" id="pantalla_devolver"></div>
+            </div>
+         </div>
+      </div>
+      <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+         <div class="card card-sky-blue">
+            <div class="card-header bg-info" id="titulo2">
+               <h3 class="card-title">Estado Radios</h3>
+            </div>
+            <div class="card-body">
+               <div class="row"> 
+               <!-- <div class="col-sm-1">
+                  <button type="button" id="listado_radios" class="btn btn-secondary">Actualizar</button>
+               </div> -->
+               </div>
+               <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="radio_frecuencias">
+                  <thead>
+                     <tr>
+                        <th>RF ID</th>
+                        <th>Estado Radio Frecuencia</th>
+                        <th>Usuario Actual</th>
+                        <th>Fecha ultima Modificacion</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     
+                     <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </form>
+   
+   <!-- <div class="card-body">
+      <div class="card card-success">
+         <div class="card-header">
+           <h3 class="card-title">Bar Chart</h3>
+           <div class="card-tools">
+             <button type="button" class="btn btn-tool" data-card-widget="collapse" aria-expanded="false">
+               <i class="fa-minus fas"></i>
+             </button>
+             <button type="" class="btn btn-tool" data-card-widget="">
+               <i class=""></i>
+             </button>
+           </div>
+         </div>
+         <div class="card-body">
+           <div class="chart">
+             <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+           </div>
+         </div>
+       </div>
+   </div> -->
+
+      <div id="mensajes"></div>
+      <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+         <div class="card card-secondary">
+            <div class="card-header">
+               <h2 class="card-title"><strong>Listado Solicitudes : <label id="oc"></label></strong></h2>
+            </div>
+            <div class="card-body">
+                  <!--Seccion de las fechas -->
+                  <div class="row ">
+                     <!-- <div class="div_button">
+                        <button type="button" class="btn btn-primary" id="btn_mostrar_solicitudes">Cargar Solicitudes</button>
+                     </div> -->
+                     
+                     <div class="col-sm-2">
+                        <label class="input-group" for="notcmb_tienda">Rango fechas asignación:</label>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <div class="input-group date" id="reservationdate1" data-target-input="nearest">
+                              <input type="text" id="fec_ini" name="fec_ini" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Ingrese Fecha Inicial"/>
+                                 <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                 </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                              <input type="text" id="fec_final" name="fec_final" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Ingrese Fecha Final"/>
+                              <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="div_button">
+                         <button type="button" id="filtro_buscar" class="btn btn-primary">Buscar</button>
+                     </div>
+                     <div class="col"></div>
+                     <div class="justify-content-end" id="descargas">
+                        <a class=" btn btn-secondary btn-sm" id="download_xls" href="#">Descargar Excel</a>
+                        <a class="btn btn-outline-success btn-sm" id="download_csv" href="#">Descargar CSV</a>
+                        <a class="btn btn-outline-info btn-sm" id="download_xlsx" href="#">Descargar XLSX</a>
+                     </div>
+                  </div>
+                  <!--Fin seccion de las fechas -->
+                  <!--button type="button" class="btn btn-secondary" id="buscar">Buscar</button-->
+               <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_pedido_solicitud_rf">
+                  <thead>
+                     <tr>
+                        <th >ID Solicitud</th>
+                        <th>Radio Frecuencia id</th>
+                        <th>Solicitante</th>
+                        <th>Fecha Asignada</th>
+                        <th>Devolución</th>
+                        <th>Fecha Devolución</th>
+                        <th>Estado Solicitud</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     
+                     <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   <!-- </form> -->
+   <script>
+       
+      $('#reservationdate1').datetimepicker({
+         format: 'DD/MM/YYYY'
+      });
+	   $('#reservationdate2').datetimepicker({
+         format: 'DD/MM/YYYY'
+      });
+
+      // var ini = $("#fec_ini").val();
+      // console.log(ini);
+      // var fin = $("#fec_final").val();
+      // console.log(fin);
+
+      // var fecha_ini = $("#fec_ini").val();
+      // var fecha_fin = $("#fec_final").val();
+
+   </script> 
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/traspaso_bodegas.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script type="text/javascript">
+		
+		
+$(document).ready(function(){  // autocompletado del articulo
+	$("#articulo").autocomplete({
+	minLength: 4,
+	source:'ajax_codigo.php',
+	select:function(event, ui){
+	$('#hddescip_').html('<input type="text" id="hddescip_" name="hddescip[]" class="form-control input-sm" style="font-size:40px " size="50" value="'+ ui.item.descrip +'"/>');
+	
+	//await new Promise(r => setTimeout(r, 2000));
+	
+	setTimeout(() => { $("#cantidad").focus(); }, 200);
+	
+
+	}
+	});
+});
+$(document).ready(function(){  // autocompletado del articulo
+	$("#cambio_articulo").autocomplete({
+	minLength: 4,
+	source:'ajax_codigo.php',
+	select:function(event, ui){
+	$('#hddescip_').html('<input type="text" id="hddescip" name="hddescip[]" class="form-control input-sm"  style="font-size:12px " size="35" value="'+ ui.item.value +'"/>');
+	//swal(ui.item.value);3
+
+	}
+	});
+});
+
+    </script>
+</head>
+
+<body>
+	 
+    <form id="frm_usuario" name="frm_usuario">
+	<div class="card-header">
+        <h2 class="card-title form-check-label">Traspasos Bodegas</h2>
+		</div>
+		<div class="card-header">
+        <h2 class="card-title">*.- Si necesitas ayuda Consulta el <b><a href="traspasos_bodegas/manual_traspasos_bodega.docx" target="_blank">Manual de Traspasos</a></h2>
+		</div><br>
+        
+        
+           <div class="card-body">
+       		<div class="card card-Olive">
+                <div class="card-header">
+                  <h3 class="card-title">Formulario de Transferencias</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <input type="hidden" class="form-control input-sm" id="recno" name="recno" readonly/>
+                        <input type="hidden" class="form-control input-sm" id="filas" name="filas"/>
+                        <input type="hidden" class="form-control input-sm" id="fec_traspaso" name="fec_traspaso" placeholder=" Ejemplo 12/12/2012" />
+                        <input type="hidden" class="form-control input-sm" id="in_existe" name="in_existe" />
+                    
+                    <label class="col-sm-2 form-check-label">#Asigando:</label>      
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input name="numero" id="numero" placeholder="Numero Asignado"  class="form-control" type="text" readonly> 
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"  id="chec" onchange="comprobar();">
+                                        <label class="form-check-label">Editar Traspaso</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+					<div class="row">
+					 <label  class="col-sm-2 form-check-label">Bodega Origen:</label>
+						 <div class="col-sm-3">
+							<div class="input-group">
+							<select class="form-control input-sm requeridoAsig" id="bodega_origen" name="bodega_origen">
+								<option value="">.............</option>
+									<option value="01">01 - CALCETINES MONARCH</option>
+									<option value="02">02 - TRAMA MONARCH</option>
+									<!--<option value="03">03 - SALDOS</option>-->
+									<option value="04">04 - DEVOLUCIONES</option>
+									<option value="05">05 - ROPA BEBÉ</option>
+									<option value="11">11 - CALCETINES PERUGGI</option>
+									<!--<option value="12">12 - TRAMA LASST</option>-->
+									<option value="14">14 - DICOTEX</option>
+									<option value="15">15 - ROPA INTERIOR TAIS</option>
+									<!--<option value="23">23 - REPROCESOS AGRICOLA</option>-->
+									<option value="31">31 - IMPORTACIONES MARATHON</option>
+									<!--<option value="42">42 - TRAMA GLAMOUR</option>-->
+									<!--<option value="43">43 - TALLER EXTERNO DEVOLUCIONES</option>-->
+									<!--<option value="44">44 - MINSA-AGRICOLA</option>-->
+									<option value="50">50 - ECOMMERCE</option>
+							</select>
+							</div>
+						</div>
+					<label class="col-sm-2 form-check-label" for="notcmb_tienda">Bodega Destino:</label>
+						<div class="col-sm-3">
+							<div class="input-group">
+							<select class="form-control requeridoAsig" id="bodega_destino" name="bodega_destino">
+								<option value="">.............</option>
+									<option value="01">01 - CALCETINES MONARCH</option>
+									<option value="02">02 - TRAMA MONARCH</option>
+									<!--<option value="03">03 - SALDOS</option>-->
+									<option value="04">04 - DEVOLUCIONES</option>
+									<option value="05">05 - ROPA BEBÉ</option>
+									<option value="11">11 - CALCETINES PERUGGI</option>
+									<!--<option value="12">12 - TRAMA LASST</option>-->
+									<option value="14">14 - DICOTEX</option>
+									<option value="15">15 - ROPA INTERIOR TAIS</option>
+									<!--<option value="23">23 - REPROCESOS AGRICOLA</option>-->
+									<option value="31">31 - IMPORTACIONES MARATHON</option>
+									<!--<option value="42">42 - TRAMA GLAMOUR</option>-->
+									<!--<option value="43">43 - TALLER EXTERNO DEVOLUCIONES</option>-->
+									<!--<option value="44">44 - MINSA-AGRICOLA</option>-->
+									<option value="50">50 - ECOMMERCE</option>
+							</select>
+							</div>
+						</div>
+                    </div><br>
+                    <div class="row">  
+						<label  class="col-sm-2 form-check-label" for="Art_Salida">Art.Salida:</label>
+						<div class="col-sm-3">
+							<div class="input-group">
+								<input name="articulo" id="articulo"  placeholder="Articulo"  class="form-control requeridoAsig" onblur="mayuscula_entrada()" type="text" style="text-transform:uppercase;"> 
+							</div>
+						</div>
+						<label  class="col-sm-2 form-check-label">Art.Entrada:</label>
+						<div class="col-sm-3">
+							<div class="input-group">
+								 <!-- <div class = "ui-widget"> -->
+									<input type="text" class="form-control" name="cambio_articulo" id="cambio_articulo" placeholder="Articulo"  onblur="mayuscula_salida()" style="text-transform:uppercase;" > 
+								<!-- </div> -->
+								<!-- <input name="hddescip_" autocomplete="off" id="hddescip_" placeholder="Articulo"  class="form-control" type="text">  -->
+							</div>
+						</div>
+					</div><br>
+                    <div class="row"> 
+                        <label  class="col-sm-2 form-check-label">Descripcion:</label>
+                        <div class="col-sm-5">
+                            <div class="input-group">
+                                <input name="descripcion_articulo" id="descripcion_articulo" placeholder="Descripcion Articulo"  class="form-control" type="text" readonly> 
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="row">                    
+                        <label  class="col-sm-2 control-label">Cantidad:</label>					
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input name="cantidad" id="cantidad" placeholder="Cantidad"  class="form-control requeridoAsig" type="text"> 
+                                </div>
+                            </div>
+                        <label class="col-sm-2 control-label">Stock B.Origen:</label>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="stock_borigen" name="stock_borigen" />
+                            </div>
+                        </div>   
+                    </div><br>
+                    <div class="row">         
+                    <div class="col-xs-12">
+                        <div class="div_button">                            
+                            <button type="button" class="btn btn-default" id="btn_limpiar_asig">Limpiar</button>
+                            <button type="button" class="btn btn-primary" id="btn_add_articulo">Agregar Articulo  <span class="glyphicon glyphicon-plus"></button>
+                            <button type="button" class="btn btn-success" id="btn_confirmar">Confirmar Traspaso  <span class="glyphicon glyphicon-ok"></button>
+                            <!--<button type="button" class="btn btn-info" id="btn_update_asig"  trid="" fila="">Modificar Asignacion</button>-->
+                            <!--<button type="button" class="btn btn-danger" id="btn_quitar_asg">Quitar Asignacion</button>-->
+                        </div>                        
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div><br>
+        
+        <div id="mensajes">
+                
+        </div>
+              <!-- TABLA PARA AGREGAR ASIGNACIONES -->
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+            <div class="card card-Lightblue">
+                <div class="card-header">
+                    <h3 class="card-title">Tabla de Transferencias</label></h3><br>
+                </div>
+                  <!-- /.card-header -->
+                <div class="card-body">
+                <!--<span class="pull-right">
+                    <button type="button" id='guardar_cambios' class="btn btn-outline btn-info btn-guardar-cambios"><i class="fas fa-save"></i> Digitar Bultos</button>                            
+                    <button type="button" id='ficha_masiva' class="btn btn-outline btn-warning"><i class="fas fa-file"></i> Ficha Masiva</button>                            
+                </span>-->
+                    <table class='table table-bordered table-striped table-sm' id="tbl_traspaso" >		
+                        <thead>
+                            <tr>
+                                <!--<th>fila</th>-->
+                                <th>Nro Asignacion</th>
+                                <th>B. Origen</th>
+                                <th>B. Destino</th>
+                                <th>Articulo</th>
+                                <th>Cambio Articulo</th>
+                                <th>Descripcion</th>
+                                <th>Fec. Traspaso</th>
+                                <th>Cantidad</th>
+                                <!--<th>Editar</th>-->
+                                <th>Borrar</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

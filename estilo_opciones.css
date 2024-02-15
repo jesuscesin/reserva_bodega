@@ -1,0 +1,185 @@
+/* estilos del sistema de motores  */
+
+
+/* salto de pagina  solo funciona con explorer*/
+.saltopagina {page-break-after: always;}
+
+/* texto para instrucciones en informes*/
+.txt01	     {font-family:Verdana; font-size:10px; font-weight:bold; color:#008000}
+
+/* texto para negrilla totales*/
+.txt02	     {
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight: bold;
+	color: #336699
+}
+
+
+/* ecabezados de columnas */
+.titulo1     { font-family: Verdana; font-size: 9px; background-color:#A6C4F6; font-weight: bold}
+.titulo2     {
+	font-family: Verdana;
+	font-size: 9px;
+	background-color: #0099CC;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.titulo3     {
+	font-family: Verdana;
+	font-size: 9px;
+	background-color: #33CCCC;
+	font-weight: bold;
+	color: #000000;
+}
+
+
+/* detalle del informe*/
+.deta01      {
+	font-family: Verdana;
+	font-size: 8pt;
+	color: #000000;
+}
+
+.deta01red   {
+	font-family: Verdana;
+	font-size: 8pt;
+	color: #CC3300;
+	background-color: #FFCC99;
+}
+
+ /* fondo verde claro */
+.deta01verde      { color: #000000; font-family: Verdana; font-size: 8pt; background-color:#D7FFD7}
+
+ /* fondo verde amarillo claro */
+.deta01ama      {
+	font-family: Verdana;
+	font-size: 8pt;
+	background-color: #FFFFC1;
+}
+
+ /* fondo gris claro */
+.deta01grey      {
+	font-family: Verdana;
+	font-size: 8pt;
+	background-color: #EAEAEA;
+}
+
+/* detalle del informe fondo blanco*/
+.deta_bl      {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+/* detalle del informe sin fondo*/
+.deta_sf      {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	background-color: #D8D8D8;
+}
+
+
+
+/* botones de accion o abrir ventanas*/
+.input2	      {
+	color: #000000;
+	font-family: Verdana;
+	font-size: 10px;
+	background-color: #FFCC99;
+	letter-spacing: 1;
+	font-weight: bold;
+}
+
+.boton01	      {
+	color: #000000;
+	font-family: Verdana;
+	font-size: 10px;
+	background-color: #FFCC99;
+	letter-spacing: 1;
+	font-weight: normal;
+}
+
+.boton02	      {
+	color: #000000;
+	font-family: Verdana;
+	font-size: 10px;
+	background-color: #97EAFF;
+	letter-spacing: 1;
+	font-weight: normal;
+}
+
+
+
+
+/* fondo azul*/
+.input3	      { color: #FFFFFF; font-family: Verdana; font-size: 10px; background-color:#000080} 
+
+/* cuadros de entrada de texto */
+.inptxt01     { color: #000000; font-family: Verdana; font-size: 11px; background-color:#D7FFD7}  
+
+/* cuadros de entrada de texto */
+.inptxt02     {
+	color: #000000;
+	font-family: Verdana;
+	font-size: 13px;
+	background-color: #FFCC99
+}
+
+.inptxt03     { color: #000000; font-family: Verdana; font-size: 13px; background-color:#D7FFD7} 
+
+
+/* fondo amarillo para destacar una celda */
+.fondo_a	{background-color:#FFFF99} 
+
+.bordeid_negro {
+	border-style: solid;
+	border-width: 0px 1px 0px 1px;
+	border-color: #000000;
+}
+
+
+/* opciones comunes*/
+select	      	{
+	color: #3366CC;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 9px;
+}
+/*para el de seleccion multiple */
+input	      	{
+	color: #000080;
+	font-family: Verdana;
+	font-size: 9px
+}
+/*para el input global*/
+input:focus	  	{ background: #eee}
+table	      	{ font-family: Verdana; font-size: 10px} /*para el texto normal entro de la tabla*/
+body          	{ font-family: Verdana; font-size: 10px; background-color:#F0F0F0}
+textarea	  	{ color: #000080; font-family: Verdana; font-size: 10px} /*para el area de texto comentarios y otros*/
+a:link       	{ font-family: Verdana; font-size: 10px; font-weight: bold; text-decoration:none }
+a:visited    	{ font-family: Verdana; font-size: 10px; font-weight: bold; text-decoration:none }
+
+/* clase que resalta la fila de un listado , aplicar a TR*/
+:hover.fila		{ cursor: pointer}
+
+/* opciones del menu principal*/
+.menu_a 		 {text-decoration:none;font-family:Verdana; font-size:10px; color:#0099CC; background-color:#FFCC00; font-weight:bold}
+a:visited.menu_a {text-decoration:none;font-family:Verdana; font-size:10px; color:#0099CC; background-color:#FFCC00; font-weight:bold}
+a:hover.menu_a   {font-family:Verdana; font-size:10px; color:#000000; background-color:#DF2E23; font-weight:bold}
+a:active.menu_a  {font-family:Verdana; font-size:10px; color:#000000; background-color:#DF2E23; font-weight:bold;position:relative;top: 2px}
+
+/* opciones del menu principal*/
+.menu_b 		 {text-decoration:none;font-family:Verdana; font-size:10px; color:#000000; background-color:#FFCC00; font-weight:bold}
+a:visited.menu_b {text-decoration:none;font-family:Verdana; font-size:12px; color:#000000; font-weight:bold}
+a:hover.menu_b   {font-family:Verdana; font-size:10px; color:#FFFFFF; background-color:#DF2E23; font-weight:bold}
+a:active.menu_b  {font-family:Verdana; font-size:12px; color:#FFFFFF; background-color:#DF2E23; font-weight:bold;position:relative;top: 2px}
+
+
+/* links en cuadros dentro del formulario o busquedas como recepcion */
+.menu_m1 		  {font-family:Verdana; font-size:8pt}
+a:visited.menu_m1 {font-family:Verdana; font-size:8pt}
+a:hover.menu_m1   {font-family:Verdana; font-size:10px; color:#000000; background-color:#DF2E23}
+a:active.menu_m1  {font-family:Verdana; font-size:10px; color:#000000; background-color:#DF2E23; font-weight:bold;position:relative;top: 2px}

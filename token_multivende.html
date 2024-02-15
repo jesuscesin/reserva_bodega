@@ -1,0 +1,93 @@
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/token_multivende.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+     
+    <form id="frm_usuario" name="frm_usuario">
+        <div class="card-header">
+              <h2 class="card-title form-check-label">Actualizacion de Token Multivende</h2>
+        </div><br>
+
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+       		<div class="card card-Olive">
+            <div class="card-header">
+               <h3 class="card-title">Ingreso de Dato</h3>
+            </div>
+            <div class="card-body">
+               <span class='pull-left fs-14'><strong>FORMULARIO DE INGRESO</strong></span><br>
+               <hr class='hr_titulo'>
+               <div class="row">
+                   <label class="col-sm-1 form-check-label text-success">Auth. Code:</label>
+                      <div class="col-sm-3">
+                         <div class="input-group">
+                             <input type="text" class="form-control input-sm border border-info" id="auth_code" name="auth_code"/>
+                         </div>
+                      </div>
+                       <button type="button" id="actualiza_token" class="btn btn-success">Actualizar Token</button>&nbsp
+                       <button type="button" id="intrucciones" class="btn btn-info">Intrucciones</button>
+               </div><br>
+            </div>
+         </div>
+        </div><br>
+            
+            <div id="mensajes">
+                
+            </div>
+
+
+              <!-- TABLA PARA AGREGAR ASIGNACIONES -->
+            <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+                <div class="card card-Lightblue">
+                    <div class="card-header">
+                        <h3 class="card-title">Token</h3><br>
+                    </div>
+                    <div class='input-group'>
+                        <span class='input-group-addon'><i class="glyphicon glyphicon-search"></i></span>
+                        <input id='search' name='search' type='text' class='form-control input-sm' placeholder='Ingrese dato a buscar...' style="width: 322px;">
+                    </div>
+                    <div class="card-body">
+                        <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_token" >		
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Token</th>
+                                    <th>Client ID</th>
+                                    <th>Client Secret</th>
+                                    <th>Authorization Code</th>
+                                    <th>Fec. Ultima Act.</th>
+                                    <th>Hora</th>
+                                    <!--<th>Accion</th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>	 
+    </form>
+<script>
+ // Write on keyup event of keyword input element
+ $(document).ready(function(){
+        $("#search").keyup(function(){
+            _this = this;
+            // Show only matching TR, hide rest of them
+            $.each($("#tbl_token tbody tr"), function() {
+                if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+                    $(this).hide();
+                else
+                $(this).show();
+            });
+        });
+   });
+
+</script>
+</body>
+</html>

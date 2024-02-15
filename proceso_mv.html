@@ -1,0 +1,94 @@
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/proceso_mv.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+     
+    <form id="frm_usuario" name="frm_usuario">
+		<div class="card-header">
+        <h2 class="card-title form-check-label">Articulos Nuevos Creados en Monarch</h2>
+		</div><br>
+        <!-- Fila 1 -->
+<!--      <div>-->
+<!--			Indica la cantidad que puedes seleccinar: <input type="text" id="cantidad" value="0">-->
+<!--		</div>-->
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+       		<div class="card card-Olive">
+                <div class="card-header">
+                  <h3 class="card-title">Seleccione</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                    <label class="col-sm-1 form-check-label" for="notcmb_tienda">Busqueda:</label>                
+                        <div class="col-sm-2">
+                            <div class="input-group">           
+                                <input name="vta_code" id="vta_code"  placeholder="Codigo Multivende"  class="form-control" type="text" style="text-transform:uppercase;"> 
+                            </div>
+                        </div>
+                        <button type="button" id="buscar" class="btn btn-primary">Buscar</button>&nbsp
+                        <button type="button" id="correr_proceso" class="btn btn-success"><i class="fas fa-upload"></i> Correr Proceso MV</button>&nbsp
+                        <button type="button" id="proceso_odoo" class="btn btn-warning"><i class="fas fa-upload"></i> Cargar SKU</button>&nbsp
+                        
+                    </div>
+                </div>
+            </div>
+        </div><br>
+            
+            <div id="mensajes">
+                
+            </div>
+
+
+              <!-- TABLA PARA AGREGAR ASIGNACIONES -->
+            <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+                <div class="card card-Lightblue">
+                    <div class="card-header">
+                        <h3 class="card-title">Codigo Seleccionado : <label id="code_seleccionada"></label></h3><br>
+                    </div>
+                    <div class='input-group'>
+                        <span class='input-group-addon'><i class="glyphicon glyphicon-search"></i></span>
+                        <input id='search' name='search' type='text' class='form-control input-sm' placeholder='Ingrese dato a buscar...' style="width: 322px;">
+                    </div>
+                    <div class="card-body">
+                        <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_mv" >		
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Codigo Multivende</th>
+                                    <th>Nombre Comprador</th>
+                                    <th>SKU</th>
+                                    <th>Descripcion</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>	 
+    </form>
+<script>
+ // Write on keyup event of keyword input element
+ $(document).ready(function(){
+        $("#search").keyup(function(){
+            _this = this;
+            // Show only matching TR, hide rest of them
+            $.each($("#tbl_articulos tbody tr"), function() {
+                if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+                    $(this).hide();
+                else
+                $(this).show();
+            });
+        });
+   });
+
+</script>
+</body>
+</html>

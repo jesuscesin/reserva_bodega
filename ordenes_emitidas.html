@@ -1,0 +1,139 @@
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/ordenes_emitidas.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js"></script>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+	<meta http-equiv="Cache-Control" content="no-store" /> 
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>    
+    <style>
+        .square {
+            height: 30px;
+            width: 110px;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20;
+        }
+        .azul {
+            background-color: #AADAFF;
+        }
+
+        .rojo {
+            background-color: #F4A9A4;
+        }
+
+        .verde {
+            background-color: #AAFFAA;
+        }
+    </style>	
+</head>
+
+
+<body>
+
+    <form >
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                  <p  class="text-muted mb-1"><a href='principal.php'>Principal</a> / Ordenes de Compra</p>
+                </div> 
+            </div>
+        </div><br>
+
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+
+            <div class="card card-Olive">
+                <div class="card-header">
+                    <h3 class="card-title">Seleccione Departamento</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <label class="col-sm-1 form-check-label" for="notcmb_tienda">Empresa:</label>                
+                        <div class="col-sm-2">
+                            <div class="input-group">           
+                                <select class="form-control input-sm" id="empresa" name="empresa">
+                                    <option value="TODOS">TODOS</option>                                                                               
+                                </select>
+                            </div>
+                        </div>        
+                    
+                        <label class="col-sm-1 form-check-label" for="fch_inicio">Fecha inicio </label>
+                        <div class="col-sm-2">
+                            <div class="input-group">
+                                <input class="form-control" type="date" name="fch_inicio" id="fch_inicio">
+                            </div>
+                        </div>
+
+                        <label class="col-sm-1 form-check-label" for="fch_fin">Fecha limite </label>
+                        <div class="col-sm-2">
+                            <div class="input-group">
+                                <input class="form-control" type="date" name="fch_fin" id="fch_fin">
+                            </div>
+                        </div>
+                        <button type="button" id="buscar" class="btn btn-primary">Buscar</button>
+
+                     </div>
+                     
+                </div>
+
+            </div>
+        </div>
+     
+
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+            <div class="card card-Lightblue">
+                <div class="card-header">
+                    <h3 class="card-title">Listado de Ordenes de Compra emitidas  : <label id="lbl_ocem"></label></h3><br>
+                </div>
+                <div class='input-group'>
+                    <span class='input-group-addon'><i class="glyphicon glyphicon-search"></i></span>
+                    <input id='search' name='search' type='text' class='form-control input-sm' placeholder='Ingrese dato a buscar...' style="width: 322px;">
+                </div>
+                <div class="card-body">
+                    <div class="row" style="width: 400px;">                   
+                        <div class="square azul"><strong>Pendiente</strong></div>
+                        <div class="square verde"><strong>Aprobado</strong></div>
+                        <div class="square rojo"><strong>Rechazado</strong></div>
+                    </div>
+                    <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_ordenes" >		
+                        <thead>
+                            <tr style="background-color: #04467B; color: aliceblue;">
+                                <th>#</th>
+                                <th>Proveedor</th>
+                                <th>RUT</th>
+                                <th>Contacto</th>
+                                <th>Solicitante</th>
+                                <th>Fecha Emisión</th>
+                                <th>Numero de Orden</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    
+</body>
+
+
+
+
+
+
+
+
+
+</html>

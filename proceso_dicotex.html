@@ -1,0 +1,102 @@
+<html>
+   <head>
+      <title>Page Title</title>
+      <script src="js/proceso_dicotex.js" type="text/javascript"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <style>
+        .campo {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+           .campo:last-child {
+                justify-content: flex-end;
+            }
+      </style>
+
+   </head>
+   <body>
+      <form id="frm_usuario" name="frm_usuario">
+         <div class="card-header">
+            <h2 class="card-title"><strong>Validacion Pedido Dicotex</strong></h2>
+         </div>
+         <br>
+         <!-- Fila 1 -->
+         <!--      <div>-->
+         <!--			Indica la cantidad que puedes seleccinar: <input type="text" id="cantidad" value="0">-->
+         <!--		</div>-->
+         <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+            <div class="card card-Olive">
+               <div class="card-header">
+                  <h3 class="card-title">Seleccion de Filtros</h3>
+                  
+               </div>
+               <div class="card-body">
+                  <div class="row">
+                     <label class="col-sm-1 form-check-label" for="notcmb_tienda">Estado:</label>           
+                     <div class="col-sm-2">
+                        <div class="input-group">
+                           <select class="form-control input-sm" id="estado" name="estado">
+                              <option value="0">TODOS</option>
+                              <option value="1">1 - PENDIENTE</option>
+                              <option value="20">20 - DISPONIBLE</option>
+                              <option value="30">30 - PROCESADA</option>
+                              <option value="40">40 - FACTURADO</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="div_button">
+                        <button type="button" id="btnGet" name="btnGet" class="btn btn-primary">Buscar</button>
+                        <button type="button" id="actualiza_precios" name="actualiza_precios" class="btn btn-success">Actualizar precios</button>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+                     
+         </div>
+         <br>  
+         <div id="mensajes">
+         </div>
+         <!-- TABLA PARA AGREGAR ASIGNACIONES -->
+         <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+            <div class="card card-Lightblue">
+               <div class="card-header">
+                  <h2 class="card-title"><strong>Seleccion de Ordenes de Compra  : <span id="fec_emision"></span></strong></h2>
+                  <button title="Leyenda" type="button" id="leyenda" name="leyenda" class="btn btn-warning" style="float: right;"><img src='img/icon/question.png'></img></button>
+               </div>
+               <!-- /.card-header -->
+               <div class="card-body">
+                  <div class="card-body table-responsive p-1">
+                     <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_select_oc" >
+                        <thead>
+                           <tr>
+                              <th>#</th>
+                              <th>Pedido</th>
+                              <th>Planilla</th>
+                              <th>Fec. Planilla</th>
+                              <th>Fec. Proceso</th>
+                              <th>Locales</th>
+                              <th>Pedidos</th>
+                              <th>Docenas</th>
+                              <th>Estado</th>
+                              <th>Est.Precios</th>
+                              <!--<th>PTL ID</th>-->
+                              <!--<th>Articulos</th>-->
+                              <th>Procesar</th>
+                              <!--<th>Precios</th>-->
+                              <th>Borrar</th>
+                              <!--<th>Borrar</th>-->
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </form>
+   </body>
+</html>

@@ -1,0 +1,100 @@
+
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="js/directorio_telefonos.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+     
+    <form id="frm_usuario" name="frm_usuario">
+		<div class="card-header">
+         <p  class="text-muted mb-1"><a href='principal.php'>Principal</a> / Direcctorio Telefonico</p>
+		</div><br>
+        <!-- Fila 1 -->
+<!--      <div>-->
+<!--			Indica la cantidad que puedes seleccinar: <input type="text" id="cantidad" value="0">-->
+<!--		</div>-->
+        <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+       		<div class="card card-Olive">
+                <div class="card-header">
+                  <h3 class="card-title">Seleccione Departamento</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                    <label class="col-sm-1 form-check-label" for="notcmb_tienda">Empresa:</label>                
+                        <div class="col-sm-2">
+                            <div class="input-group">           
+                                <select class="form-control input-sm" id="empresa" name="empresa">
+                                    <option value="TODOS">TODOS</option>                                        
+                                    <option value="GRUPOMONARCH">GRUPOMONARCH</option>                                        
+                                    <option value="DICOTEX">DICOTEX</option>                                        
+                                    <option value="VOILA">VOILA</option>                                        
+                                    <option value="AGRICOLA">AGRICOLA</option>                                        
+                                    <option value="PROMER">PROMER</option>                                        
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" id="buscar" class="btn btn-primary">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+            
+            <div id="mensajes">
+                
+            </div>
+
+
+              <!-- TABLA PARA AGREGAR ASIGNACIONES -->
+            <div class="card-body" style="padding-bottom: 5px;padding-top: 5px;">
+                <div class="card card-Lightblue">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado Telefonico de  : <label id="empresa_seleccionada"></label></h3><br>
+                    </div>
+                    <div class='input-group'>
+                        <span class='input-group-addon'><i class="glyphicon glyphicon-search"></i></span>
+                        <input id='search' name='search' type='text' class='form-control input-sm' placeholder='Ingrese dato a buscar...' style="width: 322px;">
+                    </div>
+                    <div class="card-body">
+                        <table class='table table-bordered table-striped table-sm dataTable dtr-inline' id="tbl_telefonos" >		
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Cargo</th>
+                                    <th>Numero</th>
+                                    <th>Anexo</th>
+                                    <th>Empresa</th>
+                                    <th>Depto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--AQUI SE MUESTRAN LOS PEDIDOS PROCESADOS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>	 
+    </form>
+<script>
+ // Write on keyup event of keyword input element
+ $(document).ready(function(){
+        $("#search").keyup(function(){
+            _this = this;
+            // Show only matching TR, hide rest of them
+            $.each($("#tbl_telefonos tbody tr"), function() {
+                if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+                    $(this).hide();
+                else
+                $(this).show();
+            });
+        });
+   });
+
+</script>
+</body>
+</html>

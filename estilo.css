@@ -1,0 +1,244 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+h1 {
+    color: #333;
+    font-size: small;
+}
+
+form {
+    margin-bottom: 2px;
+    background-color: #ccc;
+
+}
+
+
+button {
+    padding: 5px;
+    font-size: small;
+    margin-left: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 10PX;
+    height: 200px !important;
+}
+
+th{
+    padding: 10px;
+    border: 2px solid;
+    background-color: #336699;
+    color: white;
+    font-weight: 200;
+    position: sticky;
+    top: 0;
+    text-align: center;
+}
+
+.tabla-principal{
+    color: #00ac47;
+}
+
+.nuevos-encabezados {
+    position: sticky;
+    top: 0;
+    background-color: #333; /* Color de fondo deseado */
+}
+  
+
+td {
+
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+#export-btn {
+    background-color: #336699;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+#export-btn:hover {
+    background-color: #00ac47;
+}
+
+#botones{
+    display: flex;
+}
+
+.input_formulario{
+    width: 40%;
+}
+
+/* Estilo para el encabezado de la tabla */
+.fa-solid{
+    font-size: 14px;
+
+}
+
+.fa-file-pen{
+    color:darkgoldenrod
+}
+
+.fa-file-circle-question{
+    color: rgb(221, 78, 78);
+}
+.fa-file-circle-exclamation{
+    color:#034d21
+}
+.fa-file-circle-check{
+    color:#00ac47
+}
+.fa-check-to-slot{
+    color:#00ac47
+}
+
+.fa-circle-arrow-right{
+    cursor: pointer;
+}
+
+.fa-circle-xmark {
+    color: red; /* O el color que desees para resaltar las diferencias */
+}
+
+.fa-circle-check{
+    color: green
+}
+
+.fa-pen-to-square{
+    color: black
+}
+
+.link_oc{
+    text-decoration: none;
+}
+
+.fa-file-circle-plus{
+    color: black;
+}
+
+.fa-file-circle-plus:hover{
+    color: blue;
+}
+
+fa-folder-open{
+    color: #336699;
+}
+
+.main-iframe{
+    height: 70vh;
+    width: 100%;
+    
+}
+
+.boton_guardar{
+    width: auto;
+    margin-top: 10px;
+}
+
+.tabla-embarques {
+    height: 200px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.tabla-container {
+    max-height: 200px; /* Altura fija de 200px */
+    overflow-y: auto; /* Desplazamiento vertical */
+    position: relative; /* Aseguramos que los elementos hijos con posición absoluta estén relativos a este contenedor */
+}
+
+
+
+/* Center-align the content in the last 4 columns */
+td:nth-last-child(-n+4) {
+    text-align: center;
+}
+
+/* Make the columns smaller */
+th {
+    padding: 8px 5px; /* Reduce padding for smaller cells */
+}
+
+label{
+    margin-top: 1.2rem;
+    display: inline-block;
+    width: 80px;
+}
+
+/* Estilo para la fila en hover */
+tr.hover-row:hover {
+    background-color: rgb(237, 232, 232); /* Cambia el color de fondo al pasar el mouse sobre la fila */
+}
+
+.dif-red {
+    color: red;
+    font-weight: bold;
+}
+
+.centered-elements {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.centered-elements2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sin_errores{
+    padding: 2px;
+    background-color: #336699;
+    color: aliceblue;
+    display: inline-block;
+}
+
+.sin_errores2{
+    text-align: left;
+}
+
+.tabla-resumen{
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos para el modal de carga */
+.loading-modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loading-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilos para el icono de carga */
+  .loading-content i {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  
