@@ -89,7 +89,7 @@ function ver_reservas() {
 
 function abrirPopupEditar(recno,reserva,os,requerimiento,articulos,cantidad,compra) {
     // Puedes ajustar las dimensiones y opciones del popup según tus necesidades
-    var popup = window.open('editar_reserva.html?recno=' + recno + '&reserva=' + reserva + '&os=' + os + '&requerimiento=' + requerimiento + '&articulos=' + articulos + '&cantidad=' + cantidad + '&compra=' + compra, 'Editar Reserva', 'width=600,height=400');
+    var popup = window.open('editar_reserva.php?recno=' + recno + '&reserva=' + reserva + '&os=' + os + '&requerimiento=' + requerimiento + '&articulos=' + articulos + '&cantidad=' + cantidad + '&compra=' + compra, 'Editar Reserva', 'width=600,height=400');
     
     
     

@@ -3,5 +3,16 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1050; /* Un n�mero mayor que el z-index predeterminado de Bootstrap */
+    z-index: 1050; /* Un n�mero mayor que el z-index predeterminado de Bootstrap */
 }
+
+/* Cambiar el tamaño de la clase form-control */
+.form-control {
+    font-size: 14px; /* Cambiar el tamaño de la fuente */
+    padding: 10px; /* Cambiar el relleno interno del elemento */
+    height: 40px; /* Cambiar la altura del elemento */
+    width: 30px;
+    /* Otros estilos personalizados según tus necesidades */
+}
+
+

@@ -40,7 +40,12 @@ function ver_reservas($requerimiento, $os, $reserva){
 	if (!empty($reserva)) {
 		$querysel .= " AND SC.C0_NUM = '$reserva'";
 	}
-	
+
+	// Agregar la condición D_E_L_E_T_E <> '*'
+	$querysel .= " AND SC.D_E_L_E_T_<> '*'";
+	$querysel .= " AND SC.C0_TABORI = 'SD1'";
+	// Agregar la cláusula ORDER BY
+	//$querysel .= " ORDER BY SC.C0_NUMREQ";
 
 
 	//echo "<pre>".$querysel."</pre>";
