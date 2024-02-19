@@ -18,7 +18,7 @@ function ver_reservas($requerimiento, $os, $reserva){
 	global $tipobd_totvs,$conexion_totvs;
 	
 
-	$querysel = "SELECT SC.C0_OS, SC.C0_NUMREQ, SC.C0_NUM, SC.C0_PRODUTO, SC.C0_QUANT,
+	$querysel = "SELECT SC.C0_OS, SC.C0_NUMREQ, SC.C0_NUM, SC.C0_PRODUTO, SC.C0_QUANT, SC.R_E_C_N_O_,
 						XZY.XZY_COMPRA 
 				FROM SC0020 SC 
 				LEFT JOIN XZY020 XZY ON SC.C0_OS = XZY.XZY_NUMOS
@@ -57,7 +57,8 @@ function ver_reservas($requerimiento, $os, $reserva){
 					"ARTICULOS"		=>$v["C0_PRODUTO"],
 					"CANTIDAD"		=>$v["C0_QUANT"],
             		"COMPRA"    	=> $v["XZY_COMPRA"],
-					"CANTMAYOR"		=> $diferencia
+					"CANTMAYOR"		=> $diferencia,
+					"R_E_C_N_O_"	=> $v["R_E_C_N_O_"]
 			);
 	}
 

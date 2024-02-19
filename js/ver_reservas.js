@@ -17,13 +17,13 @@ function ver_reservas() {
        var requerimiento    = $("#requerimiento").val();
        var os   = $("#os").val();
        var reserva   = $("#reserva").val();
-       var status 			= $("#status").val();
+
     $.ajax({
         url:'ver_reservas.php',
         type: 'GET',
         dataType: 'json',
         //contentType: false,
-        data:{'ver':'ver','requerimiento':requerimiento,'os':os, 'reserva':reserva, 'status':status},
+        data:{'ver':'ver','requerimiento':requerimiento,'os':os, 'reserva':reserva},
         //processData: false,
         //cache: false
         //beforeSend:cargando,
@@ -48,7 +48,6 @@ function ver_reservas() {
                     //tr.attr('class','danger');
                     
 
-                    
 					// var ic = $("<i/>").attr({'class':'nav-icon fab fa-dochub'});					
                     
                     $('<td />').html(i).appendTo(tr);
@@ -58,10 +57,16 @@ function ver_reservas() {
                     $('<td />').html(valores.ARTICULOS).appendTo(tr);
                     $('<td />').html(valores.CANTIDAD).appendTo(tr);
                     $('<td />').html(valores.COMPRA).appendTo(tr);
+                    
+
                     if (valores.CANTMAYOR === 'X') {
-                        var editarBtn = $("<button/>").addClass('btn btn-primary').text('Editar');
+                        var editarBtn = $("<button/>", {
+                            type: 'button', // Agregar esta línea para especificar el tipo de botón
+                            class: 'btn btn-primary',
+                            text: 'Editar'
+                        });
                         editarBtn.on('click', function () {
-                            editarReserva(valores.RESERVA);
+                            abrirPopupEditar(valores.R_E_C_N_O_, valores.RESERVA, valores.OS, valores.REQUERIMIENTO, valores.ARTICULOS, valores.CANTIDAD, valores.COMPRA);
                         });
                         $('<td />').append(editarBtn).appendTo(tr);
                     }
@@ -80,4 +85,15 @@ function ver_reservas() {
         }
     });
     
+}
+
+function abrirPopupEditar(recno,reserva,os,requerimiento,articulos,cantidad,compra) {
+    // Puedes ajustar las dimensiones y opciones del popup según tus necesidades
+    var popup = window.open('editar_reserva.html?recno=' + recno + '&reserva=' + reserva + '&os=' + os + '&requerimiento=' + requerimiento + '&articulos=' + articulos + '&cantidad=' + cantidad + '&compra=' + compra, 'Editar Reserva', 'width=600,height=400');
+    
+    
+    
+    
+    // Puedes agregar más configuraciones si es necesario
+    // popup.focus(); // Si deseas que el nuevo popup obtenga el foco
 }
