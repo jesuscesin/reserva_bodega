@@ -70,6 +70,48 @@ function ver_reservas($requerimiento, $os, $reserva){
 	echo json_encode($cargar);
 }
 
+function delete_reserva($recno, $np, $reserva){
+	global $tipobd_totvs,$conexion_totvs;
+		//borrar la reserva
+		$queryup_1 = "UPDATE SC0020 SET D_E_L_E_T_ = '*', R_E_C_D_E_L_ = '".$recno."'
+		WHERE R_E_C_N_O_ = '".$recno."'";
+		//echo $queryup_1;
+		$rsu_1 = querys($queryup_1, $tipobd_totvs, $conexion_totvs);
+
+		echo "Reserva '".$reserva."' con NParte ".$np." ELIMINADA";
+		echo "<br>";
+		//echo "<script>window.location.reload();</script>";
+}
+
+function nueva_reserva($recno, $nuevaCantidad, $reserva, $np){
+
+	global $tipobd_totvs,$conexion_totvs;
+
+
+			$query_03 = "INSERT INTO SC0020(C0_FILIAL, C0_NUMSCP, C0_ITEMSCP, C0_NUM, C0_OS, C0_TIPO, C0_DOCRES, C0_SOLICIT, C0_FILRES, 
+			C0_PRODUTO, C0_LOCAL, C0_XUBICA, C0_QUANT, C0_XCONSUM, C0_PENDIEN, C0_XSALDOA, C0_QSOLICI, 
+			C0_SALDOAC, C0_VALIDA, C0_QD3DOC, C0_D3QUANT, C0_EMISSAO, C0_NUMLOTE, C0_LOTECTL, C0_LOCALIZ, 
+			C0_NUMSERI, C0_QTDPED, C0_OBS, C0_UBICA, C0_QTDELIM, C0_QTDORIG, C0_RESERVA, C0_RECNOCP, 
+			C0_NUMREQ, C0_ITEMREQ, C0_CODREQ, C0_FILDES, C0_ORIGEN, C0_TABORI, C0_RECORI, D_E_L_E_T_, 
+			R_E_C_N_O_, R_E_C_D_E_L_, C0_CLASIF, C0_CODCLAS, C0_RESANT)
+			SELECT C0_FILIAL, C0_NUMSCP, C0_ITEMSCP, (SELECT LPAD(MAX(C0_NUM) +1,6,0) FROM SC0020), C0_OS, C0_TIPO, C0_DOCRES, C0_SOLICIT, C0_FILRES, 
+			C0_PRODUTO, C0_LOCAL, C0_XUBICA, '$nuevaCantidad' , C0_XCONSUM, C0_PENDIEN, C0_XSALDOA, C0_QSOLICI, 
+			C0_SALDOAC, C0_VALIDA, C0_QD3DOC, C0_D3QUANT, C0_EMISSAO, C0_NUMLOTE, C0_LOTECTL, C0_LOCALIZ, 
+			C0_NUMSERI, C0_QTDPED, C0_OBS, C0_UBICA, C0_QTDELIM, C0_QTDORIG, C0_RESERVA, C0_RECNOCP, 
+			C0_NUMREQ, C0_ITEMREQ, C0_CODREQ, C0_FILDES, C0_ORIGEN, C0_TABORI, C0_RECORI, ' ', 
+			(SELECT MAX(R_E_C_N_O_) +1 FROM SC0020), 0 , ' ', ' ', C0_NUM
+			FROM SC0020 WHERE R_E_C_N_O_ = '".$recno."' ";
+			//echo $query_03;
+			$rsu_3 = querys($query_03, $tipobd_totvs, $conexion_totvs);
+
+            $secuencia_query = "SELECT MAX(C0_NUM) FROM SC0020";
+            $secuencia_resultado = querys($secuencia_query, $tipobd_totvs, $conexion_totvs);
+            $nueva_reserva = oci_fetch_assoc($secuencia_resultado);
+
+            echo "<br>";
+            echo "Se Creo Nueva Reserva N° '".$nueva_reserva['MAX(C0_NUM)']."' con NParte ".$np." y la cantidad : ".$nuevaCantidad."";
+            echo "<br>";
+}
 
 
 if(isset($_GET["ver"])){
@@ -79,25 +121,14 @@ if(isset($_GET["ver"])){
    ver_reservas($requerimiento,$os,$reserva);
 }
 
-function generar_insert($recno, $cantidad_nueva){
-    
-	global $tipobd_totvs,$conexion_totvs;
-
-	$query_03 = "INSERT INTO SC0020(C0_FILIAL, C0_NUMSCP, C0_ITEMSCP, C0_NUM, C0_OS, C0_TIPO, C0_DOCRES, C0_SOLICIT, C0_FILRES, 
-	C0_PRODUTO, C0_LOCAL, C0_XUBICA, C0_QUANT, C0_XCONSUM, C0_PENDIEN, C0_XSALDOA, C0_QSOLICI, 
-	C0_SALDOAC, C0_VALIDA, C0_QD3DOC, C0_D3QUANT, C0_EMISSAO, C0_NUMLOTE, C0_LOTECTL, C0_LOCALIZ, 
-	C0_NUMSERI, C0_QTDPED, C0_OBS, C0_UBICA, C0_QTDELIM, C0_QTDORIG, C0_RESERVA, C0_RECNOCP, 
-	C0_NUMREQ, C0_ITEMREQ, C0_CODREQ, C0_FILDES, C0_ORIGEN, C0_TABORI, C0_RECORI, D_E_L_E_T_, 
-	R_E_C_N_O_, R_E_C_D_E_L_, C0_CLASIF, C0_CODCLAS, C0_RESANT)
-	SELECT C0_FILIAL, C0_NUMSCP, C0_ITEMSCP, (SELECT LPAD(MAX(C0_NUM) +1,6,0) FROM SC0020), C0_OS, C0_TIPO, C0_DOCRES, C0_SOLICIT, C0_FILRES, 
-	C0_PRODUTO, C0_LOCAL, C0_XUBICA, '$cantidad_nueva' , C0_XCONSUM, C0_PENDIEN, C0_XSALDOA, C0_QSOLICI, 
-	C0_SALDOAC, C0_VALIDA, C0_QD3DOC, C0_D3QUANT, C0_EMISSAO, C0_NUMLOTE, C0_LOTECTL, C0_LOCALIZ, 
-	C0_NUMSERI, C0_QTDPED, C0_OBS, C0_UBICA, C0_QTDELIM, C0_QTDORIG, C0_RESERVA, C0_RECNOCP, 
-	C0_NUMREQ, C0_ITEMREQ, C0_CODREQ, C0_FILDES, C0_ORIGEN, C0_TABORI, C0_RECORI, ' ', 
-	(SELECT MAX(R_E_C_N_O_) +1 FROM SC0020), 0 , ' ', ' ', C0_NUM
-	FROM SC0020 WHERE R_E_C_N_O_ = '".$recno."' ";
-	//echo $query_03;
-	$rsu_3 = querys($query_03, $tipobd_totvs, $conexion_totvs);
+if(isset($_GET["editar"])){
+	$reserva 		=  $_GET["reserva"];
+	$np 			=  $_GET["articulos"];
+	$cantidad 		=  $_GET["cantidad"];
+	$recno 			=  $_GET["recno"];
+	$nuevaCantidad 	=  $_GET["nuevaCantidad"];
+	delete_reserva($recno,$np,$reserva);
+	nueva_reserva($recno, $nuevaCantidad, $reserva, $np);
 }
 
 
