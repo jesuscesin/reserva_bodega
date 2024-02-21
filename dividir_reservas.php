@@ -113,65 +113,32 @@ $requerimiento  = $_GET['requerimiento'];
 $np		          = $_GET['articulos'];
 $cantidad       = $_GET['cantidad'];
 $compra         = $_GET['compra'];
-$cant_new       = $_GET['cant_new'];
 
-
-echo $cant_new;
-echo "<form action='guardar_cambios.php' method='post' onsubmit='return validateForm()'>
-
-  <div class='tabla-container2'>    
-  <table  id='editar' >
-
-
-    <tr>
-        <th colspan='3'>INFO RESERVA</th>
-    </tr>
-    <tr>
-        <th>Reserva</th>
-        <td><input class='input_formulario' type='text' name='reserva' id='reserva' value='".$reserva."' readonly></td>
-    </tr>
-    <tr>
-        <th>OS</th>
-        <td><input class='input_formulario' type='text' name='os' id='os' value='".$os."' readonly></td>
-    </tr>
-    <tr>
-        <th>Requerimiento</th>
-        <td><input class='input_formulario' type='text' name='requerimiento' id='requerimiento' value='".$requerimiento."' readonly></td>
-	</tr>
-    <tr>
-        <th>N/P</th>
-        <td><input class='input_formulario' type='text' name='np' id='np' value='". $np."' readonly></td>
-	</tr>
-	<tr>
-	<th>Cantidad</th>
-	<td><input class='input_formulario' type='text' name='cantidad' id='cantidad' value='". $cantidad."' readonly></td>
-  	</tr>
-	<tr>
-	<th>Compra</th>
-	<td><input class='input_formulario' type='text' name='compra' id='compra' value='". $compra."' readonly></td>
-  	</tr>
-	<tr>
-	<th>NUEVA CANTIDAD DE LA RESERVA</th>
-	<td colspan='4'><input type='number' name='cant_new' value='". $cant_new."' required></td>
-	</tr>
-<tr>
-<td colspan='5'><input type='submit' class='boton_guardar' value='Guardar cambios' id='submitButton'></td>
-</tr>
-
-</table>
-</div>
-
-<input type='hidden' name='reserva' value='".$reserva."'>
-<input type='hidden' name='os' value='".$os."'>
-<input type='hidden' name='requerimiento' value='".$requerimiento."'>
-<input type='hidden' name='np' value='".$np."'>
-<input type='hidden' name='cantidad' value='".$cantidad."'>
-<input type='hidden' name='compra' value='".$compra."'>
-<input type='hidden' name='recno' value='".$recno."'>
+$nuevo_new 
 
 
 
-</form>" ;
+if (isset($_POST['cambios'])) {
+  $cambios = json_decode($_POST['cambios'], true);
+
+  foreach ($cambios as $cambio) {
+      // Extract information from $cambio array
+      $recno = $cambio['recno'];
+      $nuevaCantidad = $cambio['nuevaCantidad'];
+      $reserva = $cambio['reserva'];
+      $np = $cambio['np'];
+
+      // Call your delete_reserva and nueva_reserva functions with the extracted information
+      delete_reserva($recno, $np, $reserva);
+      nueva_reserva($recno, $nuevaCantidad, $reserva, $np);
+  }
+
+  // Return a success response
+  echo json_encode(['success' => true]);
+} else {
+  // Return an error response
+  echo json_encode(['error' => 'Invalid request']);
+}
 ?>
 
 </body>

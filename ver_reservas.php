@@ -43,7 +43,7 @@ function ver_reservas($requerimiento, $os, $reserva){
 
 	// Agregar la condición D_E_L_E_T_E <> '*'
 	$querysel .= " AND SC.D_E_L_E_T_<> '*'";
-	$querysel .= " AND SC.C0_TABORI = 'SD1'";
+	//$querysel .= " AND SC.C0_TABORI = 'SD1'";
 	// Agregar la cláusula ORDER BY
 	//$querysel .= " ORDER BY SC.C0_NUMREQ";
 
@@ -77,6 +77,27 @@ if(isset($_GET["ver"])){
    $os 				=  $_GET["os"];
    $reserva 		=  $_GET["reserva"];
    ver_reservas($requerimiento,$os,$reserva);
+}
+
+function generar_insert($recno, $cantidad_nueva){
+    
+	global $tipobd_totvs,$conexion_totvs;
+
+	$query_03 = "INSERT INTO SC0020(C0_FILIAL, C0_NUMSCP, C0_ITEMSCP, C0_NUM, C0_OS, C0_TIPO, C0_DOCRES, C0_SOLICIT, C0_FILRES, 
+	C0_PRODUTO, C0_LOCAL, C0_XUBICA, C0_QUANT, C0_XCONSUM, C0_PENDIEN, C0_XSALDOA, C0_QSOLICI, 
+	C0_SALDOAC, C0_VALIDA, C0_QD3DOC, C0_D3QUANT, C0_EMISSAO, C0_NUMLOTE, C0_LOTECTL, C0_LOCALIZ, 
+	C0_NUMSERI, C0_QTDPED, C0_OBS, C0_UBICA, C0_QTDELIM, C0_QTDORIG, C0_RESERVA, C0_RECNOCP, 
+	C0_NUMREQ, C0_ITEMREQ, C0_CODREQ, C0_FILDES, C0_ORIGEN, C0_TABORI, C0_RECORI, D_E_L_E_T_, 
+	R_E_C_N_O_, R_E_C_D_E_L_, C0_CLASIF, C0_CODCLAS, C0_RESANT)
+	SELECT C0_FILIAL, C0_NUMSCP, C0_ITEMSCP, (SELECT LPAD(MAX(C0_NUM) +1,6,0) FROM SC0020), C0_OS, C0_TIPO, C0_DOCRES, C0_SOLICIT, C0_FILRES, 
+	C0_PRODUTO, C0_LOCAL, C0_XUBICA, '$cantidad_nueva' , C0_XCONSUM, C0_PENDIEN, C0_XSALDOA, C0_QSOLICI, 
+	C0_SALDOAC, C0_VALIDA, C0_QD3DOC, C0_D3QUANT, C0_EMISSAO, C0_NUMLOTE, C0_LOTECTL, C0_LOCALIZ, 
+	C0_NUMSERI, C0_QTDPED, C0_OBS, C0_UBICA, C0_QTDELIM, C0_QTDORIG, C0_RESERVA, C0_RECNOCP, 
+	C0_NUMREQ, C0_ITEMREQ, C0_CODREQ, C0_FILDES, C0_ORIGEN, C0_TABORI, C0_RECORI, ' ', 
+	(SELECT MAX(R_E_C_N_O_) +1 FROM SC0020), 0 , ' ', ' ', C0_NUM
+	FROM SC0020 WHERE R_E_C_N_O_ = '".$recno."' ";
+	//echo $query_03;
+	$rsu_3 = querys($query_03, $tipobd_totvs, $conexion_totvs);
 }
 
 
