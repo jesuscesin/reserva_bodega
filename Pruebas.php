@@ -8,7 +8,7 @@ $sid=session_id();
 if (!ini_get('session.auto_start') and empty($sid)) {session_start();}
 
 global $tipobd_totvs, $conexion_totvs;
-$resultado1 		= selec_server('TOTVS_MCHV12');//CONEXION BBDD TOTVS
+$resultado1 		= selec_server('TOTVS_MCHV12');//CONEXION BBDD TOTV S 
 $tipobd_totvs 		= $resultado1[0];
 $conexion_totvs 	= $resultado1[1];
 
